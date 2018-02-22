@@ -1,18 +1,16 @@
 defmodule Exfeed do
-  @moduledoc """
-  Documentation for Exfeed.
-  """
+  defmodule Entry do
+    defstruct []
+  end
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Exfeed.hello
-      :world
-
-  """
-  def hello do
-    :world
+  defmodule Image do
+    defstruct [
+      :url,
+      :title,
+      :link,
+      :width,
+      :height,
+      :description
+    ]
   end
 end
