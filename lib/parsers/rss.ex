@@ -14,21 +14,52 @@ defmodule Exfeed.Parser.RSS do
     ]
   end
 
+  defmodule Image do
+    defstruct [
+      :url,
+      :title,
+      :link,
+      :width,
+      :height,
+      :description
+    ]
+  end
+
   def parse(raw_feed) do
-    %Exfeed.Parser.RSS.Feed{
-      title: get_feed_value(raw_feed, "title"),
-      description: get_feed_value(raw_feed, "description"),
-      ttl: get_feed_value(raw_feed, "ttl"),
-      language: get_feed_value(raw_feed, "language"),
+    %Feed{
+      title: feed_field(raw_feed, "title"),
+      description: feed_field(raw_feed, "description"),
+      ttl: feed_field(raw_feed, "ttl"),
+      language: feed_field(raw_feed, "language"),
+      image: %Image{
+        url: image_field(raw_feed, "url"),
+        title: image_field(raw_feed, "title"),
+        link: image_field(raw_feed, "link"),
+        width: image_field(raw_feed, "width"),
+        height: image_field(raw_feed, "width"),
+        description: image_field(raw_feed, "description")
+      }
     }
   end
 
-  def get_feed_value(raw_feed, css_selector) do
+  def image_field(raw_feed, image_field) do
     raw_feed
-    |> Floki.find("channel > #{css_selector}")
+    |> feed_field("image")
+    |> node_value(image_field)
+  end
+
+  def feed_field(raw_feed, feed_field) do
+    raw_feed
+    |> Floki.find("channel > #{feed_field}")
     |> node_value()
   end
 
+  def node_value(node, subnode_name) do
+    node
+    |> Floki.find(subnode_name)
+    |> node_value()
+  end
   def node_value([{_, _, [value]}]) when is_binary(value), do: value
   def node_value([]), do: ""
+  def node_value(value), do: value
 end

@@ -50,32 +50,26 @@ defmodule Exfeed.Parser.RssTest do
     assert feed.language == "en"
   end
 
-  @tag :pending
   test "parsing the image url", %{feed: feed} do
     assert feed.image.url == "https://tenderlovemaking.com/images/header-logo-text-trimmed.png"
   end
 
-  @tag :pending
   test "parsing the image title", %{feed: feed} do
     assert feed.image.title == "Tender Lovemaking"
   end
 
-  @tag :pending
   test "parsing the image link", %{feed: feed} do
     assert feed.image.link == "http://tenderlovemaking.com"
   end
 
-  @tag :pending
   test "parsing the image width", %{feed: feed} do
     assert feed.image.width == "766"
   end
 
-  @tag :pending
   test "parsing the image height", %{feed: feed} do
     assert feed.image.height == "138"
   end
 
-  @tag :pending
   test "parsing the image description", %{feed: feed} do
     assert feed.image.description == "The act of making love, tenderly."
   end
