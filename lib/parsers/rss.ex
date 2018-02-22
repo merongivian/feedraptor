@@ -16,16 +16,16 @@ defmodule Exfeed.Parser.RSS do
 
   def parse(raw_feed) do
     %Exfeed.Parser.RSS.Feed{
-      title: get_value(raw_feed, "channel > title"),
-      description: get_value(raw_feed, "channel > description"),
-      ttl: get_value(raw_feed, "channel > ttl"),
-      language: get_value(raw_feed, "channel > language"),
+      title: get_feed_value(raw_feed, "title"),
+      description: get_feed_value(raw_feed, "description"),
+      ttl: get_feed_value(raw_feed, "ttl"),
+      language: get_feed_value(raw_feed, "language"),
     }
   end
 
-  def get_value(raw_feed, css_selector) do
+  def get_feed_value(raw_feed, css_selector) do
     raw_feed
-    |> Floki.find(css_selector)
+    |> Floki.find("channel > #{css_selector}")
     |> node_value()
   end
 
