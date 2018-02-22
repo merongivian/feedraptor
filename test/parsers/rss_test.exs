@@ -74,7 +74,6 @@ defmodule Exfeed.Parser.RssTest do
     assert feed.image.description == "The act of making love, tenderly."
   end
 
-  @tag :pending
   test "parsing entries", %{feed: feed} do
     assert Enum.count(feed.entries) == 10
   end

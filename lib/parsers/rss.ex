@@ -11,6 +11,7 @@ defmodule Exfeed.Parser.RSS do
       :hubs,
       :language,
       :image,
+      :entries
     ]
   end
 
@@ -31,6 +32,7 @@ defmodule Exfeed.Parser.RSS do
       description: feed_field(raw_feed, "description"),
       ttl: feed_field(raw_feed, "ttl"),
       language: feed_field(raw_feed, "language"),
+      entries: get_entries(raw_feed),
       image: %Image{
         url: image_field(raw_feed, "url"),
         title: image_field(raw_feed, "title"),
@@ -46,6 +48,10 @@ defmodule Exfeed.Parser.RSS do
     raw_feed
     |> feed_field("image")
     |> node_value(image_field)
+  end
+
+  def get_entries(raw_feed) do
+    Floki.find(raw_feed, "item")
   end
 
   def feed_field(raw_feed, feed_field) do
