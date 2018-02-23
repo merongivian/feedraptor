@@ -1,4 +1,7 @@
 defmodule Exfeed.Parser.RSS do
+  alias Exfeed.Parser.RSS.Entry
+  import Exfeed.Parser.XML
+
   defmodule Feed do
     defstruct [
       :feed_url,
@@ -46,7 +49,9 @@ defmodule Exfeed.Parser.RSS do
   end
 
   def get_entries(raw_feed) do
-    Floki.find(raw_feed, "item")
+    raw_feed
+    |> Floki.find("item")
+    |> Enum.map(&Entry.parse/1)
   end
 
   def image_field(raw_feed, field_name) do
@@ -60,13 +65,4 @@ defmodule Exfeed.Parser.RSS do
     |> Floki.find("channel > #{field_name}")
     |> node_value()
   end
-
-  def node_value(node, subnode_name) do
-    node
-    |> Floki.find(subnode_name)
-    |> node_value()
-  end
-  def node_value([{_, _, [value]}]) when is_binary(value), do: value
-  def node_value([]), do: ""
-  def node_value(value), do: value
 end
