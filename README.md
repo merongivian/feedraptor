@@ -1,6 +1,8 @@
 # Exfeed
 
-DISCLAIMER: This is not ready yet
+[![Build Status](https://travis-ci.org/merongivian/exfeed.svg?branch=master)](https://travis-ci.org/merongivian/exfeed/)
+
+**DISCLAIMER**: This is not ready yet
 
 ExFeed is an Elixir library for parsing feeds, inspired by Ruby's [Feedjira](https://github.com/feedjira/feedjira). Parsing is done in pure
 Elixir thanks to [Floki](https://github.com/philss/floki)
