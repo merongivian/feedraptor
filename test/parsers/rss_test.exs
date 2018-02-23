@@ -30,7 +30,6 @@ defmodule Exfeed.Parser.RssTest do
     assert feed.ttl == "60"
   end
 
-  @tag :pending
   test "parsing the last build date", %{feed: feed} do
     assert feed.last_built == "Sat, 07 Sep 2002 09:42:31 GMT"
   end
