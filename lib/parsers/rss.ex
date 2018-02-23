@@ -42,7 +42,7 @@ defmodule Exfeed.Parser.RSS do
         title: image_field(raw_feed, "title"),
         link: image_field(raw_feed, "link"),
         width: image_field(raw_feed, "width"),
-        height: image_field(raw_feed, "width"),
+        height: image_field(raw_feed, "height"),
         description: image_field(raw_feed, "description")
       }
     }
