@@ -2,7 +2,7 @@ defmodule Exfeed.SampleFeeds do
   @feeds [
     sample_rss_feed:          "TenderLovemaking.xml",
     sample_atom_feed:         "AmazonWebServicesBlog.xml",
-    sample_rss_entry_content: "TenderLovemakingFirstEntry.xml"
+    sample_rss_entry_content: "TenderLoveMakingFirstEntry.xml"
   ]
 
   Enum.each @feeds, fn({sample_name, sample_file}) ->
