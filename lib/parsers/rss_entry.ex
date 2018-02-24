@@ -15,14 +15,14 @@ defmodule Exfeed.Parser.RSS.Entry do
     :dc_identifier
   ]
 
-  def parse(parsed_entry) do
+  def parse(entry) do
     %Exfeed.Parser.RSS.Entry{
-      title: node_value(parsed_entry, "title"),
-      url: node_value(parsed_entry, "link"),
-      author: node_value(parsed_entry, "dc:creator"),
-      content: node_value(parsed_entry, "content:encoded"),
-      summary: node_value(parsed_entry, "description"),
-      entry_id: node_value(parsed_entry, "guid")
+      title: element(entry, "title"),
+      url: element(entry, "link"),
+      author: element(entry, "dc:creator"),
+      content: element(entry, "content:encoded"),
+      summary: element(entry, "description"),
+      entry_id: element(entry, "guid")
     }
   end
 end
