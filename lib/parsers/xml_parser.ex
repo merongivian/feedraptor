@@ -2,10 +2,16 @@ defmodule Exfeed.Parser.XML do
   def element(source, name) do
     node_value(source, name)
   end
-  def element(source, name, parser: parser) do
+  def element(source, name, strukt: strukt) do
     source
     |> node_value(name)
-    |> parser.parse()
+    |> strukt.create()
+  end
+
+  def elements(source, name, strukt: strukt) do
+    source
+    |> Floki.find(name)
+    |> Enum.map(&strukt.create/1)
   end
 
   defp node_value(source, name) do

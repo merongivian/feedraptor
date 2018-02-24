@@ -15,7 +15,7 @@ defmodule Exfeed.Parser.RSS.Entry do
     :dc_identifier
   ]
 
-  def parse(entry) do
+  def create(entry) do
     %Exfeed.Parser.RSS.Entry{
       title: element(entry, "title"),
       url: element(entry, "link"),

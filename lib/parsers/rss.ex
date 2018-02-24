@@ -16,6 +16,18 @@ defmodule Exfeed.Parser.RSS do
       :image,
       :entries
     ]
+
+    def create(feed) do
+      %Feed{
+        title: element(feed, "title"),
+        description: element(feed, "description"),
+        ttl: element(feed, "ttl"),
+        language: element(feed, "language"),
+        last_built: element(feed, "lastbuilddate"),
+        entries: elements(feed, "item", strukt: Exfeed.Parser.RSS.Entry),
+        image: element(feed, "image", strukt: Exfeed.Parser.RSS.Image)
+      }
+    end
   end
 
   defmodule Image do
@@ -28,7 +40,7 @@ defmodule Exfeed.Parser.RSS do
       :description
     ]
 
-    def parse(image) do
+    def create(image) do
       %Image{
         url: element(image, "url"),
         title: element(image, "title"),
@@ -41,27 +53,6 @@ defmodule Exfeed.Parser.RSS do
   end
 
   def parse(feed) do
-    %Feed{
-      title: element(feed, "title"),
-      description: element(feed, "description"),
-      ttl: element(feed, "ttl"),
-      language: element(feed, "language"),
-      last_built: element(feed, "lastbuilddate"),
-      entries: get_entries(feed),
-      image: element(feed, "image", parser: Exfeed.Parser.RSS.Image)
-      #image: get_image(feed)
-    }
-  end
-
-  def get_entries(feed) do
-    feed
-    |> Floki.find("item")
-    |> Enum.map(&Entry.parse/1)
-  end
-
-  def get_image(feed) do
-    feed
-    |> element("image")
-    |> Image.parse()
+    Feed.create(feed)
   end
 end
