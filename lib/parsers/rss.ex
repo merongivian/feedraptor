@@ -48,7 +48,8 @@ defmodule Exfeed.Parser.RSS do
       language: element(feed, "language"),
       last_built: element(feed, "lastbuilddate"),
       entries: get_entries(feed),
-      image: get_image(feed)
+      image: element(feed, "image", parser: Exfeed.Parser.RSS.Image)
+      #image: get_image(feed)
     }
   end
 

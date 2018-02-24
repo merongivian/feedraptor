@@ -1,13 +1,22 @@
 defmodule Exfeed.Parser.XML do
-  def element(node, subnode_name) do
-    if subnode_name =~ ":" do
-      node
+  def element(source, name) do
+    node_value(source, name)
+  end
+  def element(source, name, parser: parser) do
+    source
+    |> node_value(name)
+    |> parser.parse()
+  end
+
+  defp node_value(source, name) do
+    if name =~ ":" do
+      source
       |> node_value()
-      |> Enum.find(&(elem(&1, 0) == subnode_name))
+      |> Enum.find(&(elem(&1, 0) == name))
       |> node_value()
     else
-      node
-      |> Floki.find(subnode_name)
+      source
+      |> Floki.find(name)
       |> List.first
       |> node_value()
     end
