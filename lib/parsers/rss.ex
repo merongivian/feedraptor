@@ -3,52 +3,29 @@ defmodule Exfeed.Parser.RSS do
   import Exfeed.Parser.XML
 
   defmodule Feed do
-    defstruct [
-      :feed_url,
-      :version,
-      :title,
-      :description,
-      :url,
-      :ttl,
-      :last_built,
-      :hubs,
-      :language,
-      :image,
-      :entries
-    ]
-
     def create(feed) do
-      %Feed{
-        title: element(feed, "title"),
-        description: element(feed, "description"),
-        ttl: element(feed, "ttl"),
-        language: element(feed, "language"),
-        last_built: element(feed, "lastbuilddate"),
-        entries: elements(feed, "item", strukt: Exfeed.Parser.RSS.Entry),
-        image: element(feed, "image", strukt: Exfeed.Parser.RSS.Image)
-      }
+      feed
+      |> element("title", as: :title)
+      |> element("description", as: :description)
+      |> element("ttl", as: :ttl)
+      |> element("language", as: :language)
+      |> element("lastbuilddate", as: :last_built)
+      |> elements("item", as: :entries, strukt: Exfeed.Parser.RSS.Entry)
+      |> element("image", as: :image, strukt: Exfeed.Parser.RSS.Image)
+      |> parse()
     end
   end
 
   defmodule Image do
-    defstruct [
-      :url,
-      :title,
-      :link,
-      :width,
-      :height,
-      :description
-    ]
-
     def create(image) do
-      %Image{
-        url: element(image, "url"),
-        title: element(image, "title"),
-        link: element(image, "link"),
-        width: element(image, "width"),
-        height: element(image, "height"),
-        description: element(image, "description")
-      }
+      image
+      |> element("url", as: :url)
+      |> element("title", as: :title)
+      |> element("link", as: :link)
+      |> element("width", as: :width)
+      |> element("height", as: :height)
+      |> element("description", as: :description)
+      |> parse()
     end
   end
 

@@ -1,17 +1,40 @@
 defmodule Exfeed.Parser.XML do
-  def element(source, name) do
-    node_value(source, name)
+  def element({source, map}, name, as: key) do
+    value = node_value(source, name)
+    {source, Map.merge(map, %{key => value})}
   end
-  def element(source, name, strukt: strukt) do
-    source
-    |> node_value(name)
-    |> strukt.create()
+  def element(source, name, as: key) do
+    value = node_value(source, name)
+    {source, %{key => value}}
+  end
+  def element({source, map}, name, as: key, strukt: strukt) do
+    value = source
+            |> node_value(name)
+            |> strukt.create()
+    {source, Map.merge(map, %{key => value})}
+  end
+  def element(source, name, as: key, strukt: strukt) do
+    value = source
+            |> node_value(name)
+            |> strukt.create()
+    {source, %{key => value}}
   end
 
-  def elements(source, name, strukt: strukt) do
-    source
-    |> Floki.find(name)
-    |> Enum.map(&strukt.create/1)
+  def elements({source, map}, name, as: key, strukt: strukt) do
+    value = source
+            |> Floki.find(name)
+            |> Enum.map(&strukt.create/1)
+    {source, Map.merge(map, %{key => value})}
+  end
+  def elements(source, name, as: key, strukt: strukt) do
+    value = source
+            |> Floki.find(name)
+            |> Enum.map(&strukt.create/1)
+    {source, %{key => value}}
+  end
+
+  def parse({_source, map}) do
+    map
   end
 
   defp node_value(source, name) do
