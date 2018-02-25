@@ -10,8 +10,8 @@ defmodule Exfeed.Parser.RSS do
       |> element("ttl")
       |> element("language")
       |> element("lastbuilddate", as: :last_built)
-      |> elements("item", as: :entries, strukt: Exfeed.Parser.RSS.Entry)
-      |> element("image", strukt: Exfeed.Parser.RSS.Image)
+      |> elements("item", as: :entries, module: Exfeed.Parser.RSS.Entry)
+      |> element("image", module: Exfeed.Parser.RSS.Image)
       |> parse()
     end
   end

@@ -21,46 +21,46 @@ defmodule Exfeed.Parser.XML do
 
   #--------------------------
 
-  def element({source, map}, name, as: key, strukt: strukt) do
+  def element({source, map}, name, as: key, module: module) do
     value = source
             |> node_value(name)
-            |> strukt.create()
+            |> module.create()
     {source, Map.merge(map, %{key => value})}
   end
-  def element({source, map}, name, strukt: strukt) do
+  def element({source, map}, name, module: module) do
     key   = String.to_atom(name)
     value = source
             |> node_value(name)
-            |> strukt.create()
+            |> module.create()
     {source, Map.merge(map, %{key => value})}
   end
 
-  def element(source, name, as: key, strukt: strukt) do
+  def element(source, name, as: key, module: module) do
     value = source
             |> node_value(name)
-            |> strukt.create()
+            |> module.create()
     {source, %{key => value}}
   end
-  def element(source, name, strukt: strukt) do
+  def element(source, name, module: module) do
     key   = String.to_atom(name)
     value = source
             |> node_value(name)
-            |> strukt.create()
+            |> module.create()
     {source, %{key => value}}
   end
 
   #----------------------
 
-  def elements({source, map}, name, as: key, strukt: strukt) do
+  def elements({source, map}, name, as: key, module: module) do
     value = source
             |> Floki.find(name)
-            |> Enum.map(&strukt.create/1)
+            |> Enum.map(&module.create/1)
     {source, Map.merge(map, %{key => value})}
   end
-  def elements(source, name, as: key, strukt: strukt) do
+  def elements(source, name, as: key, module: module) do
     value = source
             |> Floki.find(name)
-            |> Enum.map(&strukt.create/1)
+            |> Enum.map(&module.create/1)
     {source, %{key => value}}
   end
 
