@@ -3,7 +3,7 @@ defmodule Exfeed.Parser.RSS.Entry do
 
   def create(entry) do
     entry
-    |> element("title", as: :title)
+    |> element("title")
     |> element("link", as: :url)
     |> element("dc:creator", as: :author)
     |> element("content:encoded", as: :content)

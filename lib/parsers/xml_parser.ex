@@ -3,22 +3,53 @@ defmodule Exfeed.Parser.XML do
     value = node_value(source, name)
     {source, Map.merge(map, %{key => value})}
   end
+  def element({source, map}, name) do
+    key   = String.to_atom(name)
+    value = node_value(source, name)
+    {source, Map.merge(map, %{key => value})}
+  end
+
   def element(source, name, as: key) do
     value = node_value(source, name)
     {source, %{key => value}}
   end
+  def element(source, name) do
+    key   = String.to_atom(name)
+    value = node_value(source, name)
+    {source, %{key => value}}
+  end
+
+  #--------------------------
+
   def element({source, map}, name, as: key, strukt: strukt) do
     value = source
             |> node_value(name)
             |> strukt.create()
     {source, Map.merge(map, %{key => value})}
   end
+  def element({source, map}, name, strukt: strukt) do
+    key   = String.to_atom(name)
+    value = source
+            |> node_value(name)
+            |> strukt.create()
+    {source, Map.merge(map, %{key => value})}
+  end
+
   def element(source, name, as: key, strukt: strukt) do
     value = source
             |> node_value(name)
             |> strukt.create()
     {source, %{key => value}}
   end
+  def element(source, name, strukt: strukt) do
+    key   = String.to_atom(name)
+    value = source
+            |> node_value(name)
+            |> strukt.create()
+    {source, %{key => value}}
+  end
+
+  #----------------------
 
   def elements({source, map}, name, as: key, strukt: strukt) do
     value = source
