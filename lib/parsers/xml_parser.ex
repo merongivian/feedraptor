@@ -3,14 +3,14 @@ defmodule Exfeed.Parser.XML do
     {source, Map.merge(map, %{key => node_value(source, name)})}
   end
   def element({source, map}, name) do
-    {source, Map.merge(map, %{String.to_atom(name) => node_value(source, name)})}
+    {source, Map.merge(map, %{name => node_value(source, name)})}
   end
 
   def element(source, name, as: key) do
     {source, %{key => node_value(source, name)}}
   end
   def element(source, name) do
-    {source, %{String.to_atom(name)=> node_value(source, name)}}
+    {source, %{name => node_value(source, name)}}
   end
 
   #--------------------------
@@ -19,14 +19,14 @@ defmodule Exfeed.Parser.XML do
     {source, Map.merge(map, %{key => node_value(source, name, module)})}
   end
   def element({source, map}, name, module: module) do
-    {source, Map.merge(map, %{String.to_atom(name) => node_value(source, name, module)})}
+    {source, Map.merge(map, %{name => node_value(source, name, module)})}
   end
 
   def element(source, name, as: key, module: module) do
     {source, %{key => node_value(source, name, module)}}
   end
   def element(source, name, module: module) do
-    {source, %{String.to_atom(name)=> node_value(source, name, module)}}
+    {source, %{name => node_value(source, name, module)}}
   end
 
   #----------------------
@@ -44,11 +44,13 @@ defmodule Exfeed.Parser.XML do
 
   defp node_values(source, name, module) do
     source
-    |> Floki.find(name)
+    |> Floki.find(Atom.to_string name)
     |> Enum.map(&module.create/1)
   end
 
   defp node_value(source, name) do
+    name = if is_binary(name), do: name, else: Atom.to_string(name)
+
     if name =~ ":" do
       source
       |> node_value()
@@ -63,7 +65,7 @@ defmodule Exfeed.Parser.XML do
   end
   def node_value(source, name, module) do
     source
-    |> node_value(name)
+    |> node_value(Atom.to_string name)
     |> module.create()
   end
   defp node_value([{_, _, [value]}]) when is_binary(value), do: value

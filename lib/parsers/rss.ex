@@ -5,13 +5,13 @@ defmodule Exfeed.Parser.RSS do
   defmodule Feed do
     def create(feed) do
       feed
-      |> element("title")
-      |> element("description")
-      |> element("ttl")
-      |> element("language")
-      |> element("lastbuilddate", as: :last_built)
-      |> elements("item", as: :entries, module: Exfeed.Parser.RSS.Entry)
-      |> element("image", module: Exfeed.Parser.RSS.Image)
+      |> element(:title)
+      |> element(:description)
+      |> element(:ttl)
+      |> element(:language)
+      |> element(:lastbuilddate, as: :last_built)
+      |> elements(:item, as: :entries, module: Exfeed.Parser.RSS.Entry)
+      |> element(:image, module: Exfeed.Parser.RSS.Image)
       |> parse()
     end
   end
@@ -19,12 +19,12 @@ defmodule Exfeed.Parser.RSS do
   defmodule Image do
     def create(image) do
       image
-      |> element("url")
-      |> element("title")
-      |> element("link")
-      |> element("width")
-      |> element("height")
-      |> element("description")
+      |> element(:url)
+      |> element(:title)
+      |> element(:link)
+      |> element(:width)
+      |> element(:height)
+      |> element(:description)
       |> parse()
     end
   end
