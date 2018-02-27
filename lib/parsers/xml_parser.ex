@@ -52,12 +52,20 @@ defmodule Exfeed.Parser.XML do
 
   def execute_definitions(source, definitions, extractor) do
     Enum.reduce definitions, %{}, fn(extractor_attributes, parsed_source) ->
-      extractor_attributes = [source | extractor_attributes]
-
-      Map.merge(
-        parsed_source,
-        apply(__MODULE__, extractor, extractor_attributes)
+      extracted_element = apply(
+        __MODULE__,
+        extractor,
+        [source | extractor_attributes]
       )
+
+      [key | _] = extractor_attributes
+
+      case extracted_element do
+        %{^key => nil} -> parsed_source
+        %{^key => ""}  -> parsed_source
+        %{^key => []}  -> parsed_source
+        _              -> Map.merge(parsed_source, extracted_element)
+      end
     end
   end
 

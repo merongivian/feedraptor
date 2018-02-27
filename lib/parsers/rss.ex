@@ -26,6 +26,7 @@ defmodule Exfeed.Parser.RSS do
 
     element :title
     element :link, as: :url
+    element :author, as: :author
     element :"dc:creator", as: :author
     element :"content:encoded", as: :content
     element :description, as: :summary
