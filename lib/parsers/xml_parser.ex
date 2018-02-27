@@ -58,7 +58,9 @@ defmodule Exfeed.Parser.XML do
         [source | extractor_attributes]
       )
 
-      [key | _] = extractor_attributes
+      key = extracted_element
+            |> Map.keys
+            |> List.first
 
       case extracted_element do
         %{^key => nil} -> parsed_source
@@ -97,21 +99,23 @@ defmodule Exfeed.Parser.XML do
     %{key => values}
   end
 
-  def node_values(source, name, key) do
-  end
-
   defp node_value(source, name) do
     name = if is_binary(name), do: name, else: Atom.to_string(name)
+    exact_find = fn(source, name) ->
+      Enum.find(source, &(elem(&1, 0) == name))
+    end
 
     if name =~ ":" do
       source
       |> node_value()
-      |> Enum.find(&(elem(&1, 0) == name))
+      |> exact_find.(name)
       |> node_value()
     else
       source
       |> Floki.find(name)
-      |> List.first
+      # NOTE: floki doesnt make an exact match when searching
+      # so have to force a re-search
+      |> exact_find.(name)
       |> node_value()
     end
   end

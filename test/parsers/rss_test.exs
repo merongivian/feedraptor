@@ -21,7 +21,6 @@ defmodule Exfeed.Parser.RssTest do
     assert feed.description == "The act of making love, tenderly."
   end
 
-  @tag :pending
   test "parsing the url", %{feed: feed} do
     assert feed.url == "http://tenderlovemaking.com"
   end

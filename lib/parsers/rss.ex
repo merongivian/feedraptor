@@ -3,6 +3,7 @@ defmodule Exfeed.Parser.RSS do
   use XML
 
   element :title
+  element :link, as: :url
   element :description
   element :ttl
   element :language
