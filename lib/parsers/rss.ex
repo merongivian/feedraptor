@@ -31,5 +31,6 @@ defmodule Exfeed.Parser.RSS do
     element :"content:encoded", as: :content
     element :description, as: :summary
     element :guid, as: :entry_id
+    elements :category, as: :categories
   end
 end

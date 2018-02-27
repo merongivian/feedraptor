@@ -83,13 +83,21 @@ defmodule Exfeed.Parser.XML do
   end
 
   def get_elements(source, name, as: key, module: module) do
-    %{key => node_values(source, name, module)}
+    values = source
+             |> Floki.find(Atom.to_string name)
+             |> Enum.map(&module.parse/1)
+
+    %{key => values}
+  end
+  def get_elements(source, name, as: key) do
+    values = source
+             |> Floki.find(Atom.to_string name)
+             |> Enum.map(&node_value/1)
+
+    %{key => values}
   end
 
-  def node_values(source, name, module) do
-    source
-    |> Floki.find(Atom.to_string name)
-    |> Enum.map(&module.parse/1)
+  def node_values(source, name, key) do
   end
 
   defp node_value(source, name) do

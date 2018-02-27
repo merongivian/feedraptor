@@ -35,7 +35,6 @@ defmodule Feedjira.Parser.RSS.EntryTest do
     #assert entry.published == published
   end
 
-  @tag :pending
   test "parsing the categories", %{entry: entry} do
     assert entry.categories == ~w(computadora nokogiri rails)
   end
