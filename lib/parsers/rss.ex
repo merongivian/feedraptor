@@ -1,35 +1,31 @@
 defmodule Exfeed.Parser.RSS do
   alias Exfeed.Parser.RSS.Entry
-  import Exfeed.Parser.XML
+  use Exfeed.Parser.XML
 
   defmodule Feed do
-    def create(feed) do
-      feed
-      |> element(:title)
-      |> element(:description)
-      |> element(:ttl)
-      |> element(:language)
-      |> element(:lastbuilddate, as: :last_built)
-      |> elements(:item, as: :entries, module: Exfeed.Parser.RSS.Entry)
-      |> element(:image, module: Exfeed.Parser.RSS.Image)
-      |> parse()
-    end
+    use Exfeed.Parser.XML
+
+    element :title
+    element :description
+    element :ttl
+    element :language
+    element :lastbuilddate, as: :last_built
+    elements :item, as: :entries, module: Exfeed.Parser.RSS.Entry
+    element :image, module: Exfeed.Parser.RSS.Image
   end
 
   defmodule Image do
-    def create(image) do
-      image
-      |> element(:url)
-      |> element(:title)
-      |> element(:link)
-      |> element(:width)
-      |> element(:height)
-      |> element(:description)
-      |> parse()
-    end
+    use Exfeed.Parser.XML
+
+    element :url
+    element :title
+    element :link
+    element :width
+    element :height
+    element :description
   end
 
   def parse(feed) do
-    Feed.create(feed)
+    Feed.new(feed)
   end
 end

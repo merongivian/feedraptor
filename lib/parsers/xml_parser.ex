@@ -1,45 +1,79 @@
 defmodule Exfeed.Parser.XML do
-  def element({source, map}, name, as: key) do
+  @callback create(String.t) :: any
+
+  @doc false
+  defmacro __using__(_) do
+    quote do
+      @behaviour Exfeed.Parser.XML
+      import Exfeed.Parser.XML
+      @before_compile Exfeed.Parser.XML
+
+      Module.register_attribute(__MODULE__, :element_definitions, accumulate: true)
+      Module.register_attribute(__MODULE__, :elements_definitions, accumulate: true)
+    end
+  end
+
+  @doc false
+  defmacro __before_compile__(_env) do
+    quote do
+      def new(source) do
+        Enum.map @element_definitions, fn(element_attributes) ->
+        end
+      end
+    end
+  end
+
+  @doc false
+  defmacro element(args \\ [], opts \\ []) do
+    quote bind_quoted: [args: args, opts: opts] do
+      Module.put_attribute(__MODULE__, :element_definitions, [args, opts])
+    end
+  end
+
+  @doc false
+  defmacro elements(args \\ [], opts \\ []) do
+    quote bind_quoted: [args: args, opts: opts] do
+      Module.put_attribute(__MODULE__, :element_definitions, [args, opts])
+    end
+  end
+
+  def do_element({source, map}, name, as: key) do
     {source, Map.merge(map, %{key => node_value(source, name)})}
   end
-  def element({source, map}, name) do
+  def do_element({source, map}, name) do
     {source, Map.merge(map, %{name => node_value(source, name)})}
   end
 
-  def element(source, name, as: key) do
+  def do_element(source, name, as: key) do
     {source, %{key => node_value(source, name)}}
   end
-  def element(source, name) do
+  def do_element(source, name) do
     {source, %{name => node_value(source, name)}}
   end
 
   #--------------------------
 
-  def element({source, map}, name, as: key, module: module) do
+  def do_element({source, map}, name, as: key, module: module) do
     {source, Map.merge(map, %{key => node_value(source, name, module)})}
   end
-  def element({source, map}, name, module: module) do
+  def do_element({source, map}, name, module: module) do
     {source, Map.merge(map, %{name => node_value(source, name, module)})}
   end
 
-  def element(source, name, as: key, module: module) do
+  def do_element(source, name, as: key, module: module) do
     {source, %{key => node_value(source, name, module)}}
   end
-  def element(source, name, module: module) do
+  def do_element(source, name, module: module) do
     {source, %{name => node_value(source, name, module)}}
   end
 
   #----------------------
 
-  def elements({source, map}, name, as: key, module: module) do
+  def do_elements({source, map}, name, as: key, module: module) do
     {source, Map.merge(map, %{key => node_values(source, name, module)})}
   end
-  def elements(source, name, as: key, module: module) do
+  def do_elements(source, name, as: key, module: module) do
     {source, %{key => node_values(source, name, module)}}
-  end
-
-  def parse({_source, map}) do
-    map
   end
 
   defp node_values(source, name, module) do
