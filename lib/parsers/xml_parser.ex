@@ -2,8 +2,7 @@ defmodule Exfeed.Parser.XML do
   @doc false
   defmacro __using__(_) do
     quote do
-      @behaviour Exfeed.Parser.XML
-      import Exfeed.Parser.XML
+      import Exfeed.Parser.XML, only: [element: 2, element: 1, elements: 2, elements: 1]
       @before_compile Exfeed.Parser.XML
 
       Module.register_attribute(__MODULE__, :element_definitions, accumulate: true)
@@ -38,16 +37,16 @@ defmodule Exfeed.Parser.XML do
   end
 
   @doc false
-  defmacro element(args \\ [], opts \\ []) do
-    quote bind_quoted: [args: args, opts: opts] do
-      Module.put_attribute(__MODULE__, :element_definitions, [args, opts])
+  defmacro element(name, opts \\ []) do
+    quote bind_quoted: [name: name, opts: opts] do
+      Module.put_attribute(__MODULE__, :element_definitions, [name, opts])
     end
   end
 
   @doc false
-  defmacro elements(args \\ [], opts \\ []) do
-    quote bind_quoted: [args: args, opts: opts] do
-      Module.put_attribute(__MODULE__, :elements_definitions, [args, opts])
+  defmacro elements(name, opts \\ []) do
+    quote bind_quoted: [name: name, opts: opts] do
+      Module.put_attribute(__MODULE__, :elements_definitions, [name, opts])
     end
   end
 
