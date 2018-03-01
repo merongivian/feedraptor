@@ -1,4 +1,4 @@
-defmodule Exfeed.Parser.AtomFeedBurnerTest do
+defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
   import Exfeed.SampleFeeds
 
   use ExUnit.Case, async: true
