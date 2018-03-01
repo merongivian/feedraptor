@@ -101,23 +101,22 @@ defmodule Exfeed.Parser.XML do
 
   defp node_value(source, name) do
     name = if is_binary(name), do: name, else: Atom.to_string(name)
-    exact_find = fn(source, name) ->
-      Enum.find(source, &(elem(&1, 0) == name))
+
+    try_exact_find = fn(source, name) ->
+      if is_list(source) do
+        Enum.find(source, &(elem(&1, 0) == name))
+      else
+        source
+      end
     end
 
-    if name =~ ":" do
-      source
-      |> node_value()
-      |> exact_find.(name)
-      |> node_value()
-    else
-      source
-      |> Floki.find(name)
-      # NOTE: floki doesnt make an exact match when searching
-      # so have to force a re-search
-      |> exact_find.(name)
-      |> node_value()
-    end
+    source
+    |> Floki.find(String.replace(name, ":", "|"))
+    # NOTE: floki.find sometimes returns more than one value
+    # for example when theres another node with the same name
+    # but with a namespace
+    |> try_exact_find.(name)
+    |> node_value()
   end
   def node_value(source, name, module) do
     source

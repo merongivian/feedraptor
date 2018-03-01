@@ -6,7 +6,7 @@ defmodule Exfeed.Parser.AtomYoutube do
   #element :link, as: :url, value: :href, with: { rel: "alternate" }
   #element :link, as: :feed_url, value: :href, with: { rel: "self" }
   element :name, as: :author
-  #element :"yt:channelid", as: :youtube_channel_id # TODO: fix nested search with colon
+  element :"yt:channelid", as: :youtube_channel_id
 
   elements :entry, as: :entries, module: Exfeed.Parser.AtomYoutube.Entry
 
@@ -16,13 +16,13 @@ defmodule Exfeed.Parser.AtomYoutube do
     element :title
     #element :link, as: :url, value: :href, with: { rel: "alternate" }
     element :name, as: :author
-    #element :"media:description", as: :content # TODO: fix nested search with colon
+    element :"media:description", as: :content
     element :summary
     element :published
     element :id, as: :entry_id
     element :updated
-    #element :"yt:videoid", as: :youtube_video_id # TODO: fix nested search with colon
-    #element :"media:title", as: :media_title # TODO: fix nested search with colon
+    element :"yt:videoid", as: :youtube_video_id
+    element :"media:title", as: :media_title
     #element :"media:content", as: :media_url, value: :url
     #element :"media:content", as: :media_type, value: :type
     #element :"media:content", as: :media_width, value: :width

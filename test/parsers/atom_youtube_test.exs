@@ -26,7 +26,6 @@ defmodule Exfeed.Parser.AtomYoutubeTest do
     assert feed.feed_url == "http://www.youtube.com/feeds/videos.xml?user=google"
   end
 
-  @tag :pending
   test "should parse the YouTube channel id", %{feed: feed} do
     assert feed.youtube_channel_id == "UCK8sQmJBp8GCxrOtXWBpyEA"
   end

@@ -33,7 +33,6 @@ defmodule Exfeed.Parser.AtomYoutubeEntryTest do
     #expect(entry.updated).to eq Time.parse_safely("2015-05-13T17:38:30+00:00") # rubocop:disable Metrics/LineLength
   end
 
-  @tag :pending
   test "should have the content populated from the media:description element", %{entry: entry} do
     assert entry.content == "A question is the most powerful force in the world. It can start you on an adventure or spark a connection. See where a question can take you. The Google app is available on iOS and Android. Download the app here: http://www.google.com/search/about/download" # rubocop:disable Metrics/LineLength
   end
@@ -44,12 +43,10 @@ defmodule Exfeed.Parser.AtomYoutubeEntryTest do
     assert entry.summary == nil
   end
 
-  @tag :pending
   test "should have the custom youtube video id", %{entry: entry} do
     assert entry.youtube_video_id == "5shykyfmb28"
   end
 
-  @tag :pending
   test "should have the custom media title", %{entry: entry} do
     assert entry.media_title == "The Google app: Questions"
   end
