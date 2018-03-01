@@ -7,6 +7,7 @@ defmodule Exfeed.SampleFeeds do
     sample_feedburner_atom_feed_alternate:    "GiantRobotsSmashingIntoOtherGiantRobots.xml",
     sample_feedburner_atom_entry_content:     "PaulDixExplainsNothingFirstEntryContent.xml",
     sample_youtube_atom_feed:                 "youtube_atom.xml",
+    sample_google_docs_list_feed:             "GoogleDocsList.xml",
     sample_rss_feed:                          "TenderLovemaking.xml",
     sample_rss_entry_content:                 "TenderLoveMakingFirstEntry.xml",
     sample_rss_feed_burner_feed:              "TechCrunch.xml",
