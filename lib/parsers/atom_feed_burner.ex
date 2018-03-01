@@ -2,13 +2,13 @@ defmodule Exfeed.Parser.AtomFeedBurner do
   alias Exfeed.Parser.XML
   use XML
 
-	element :title
-	element :subtitle, as: :description
-	#element :link, as: :url_text_html, value: :href, with: { type: "text/html"  }
-	#element :link, as: :url_notype, value: :href, with: { type: nil  }
-	#element :link, as: :feed_url_link, value: :href, with: { type: "application/atom+xml"  } # rubocop:disable Metrics/LineLength
-	#element :"atom10:link", as: :feed_url_atom10_link, value: :href, with: { type: "application/atom+xml"  }
-	#elements :"atom10:link", as: :hubs, value: :href, with: { rel: "hub"  }
+  element :title
+  element :subtitle, as: :description
+  #element :link, as: :url_text_html, value: :href, with: { type: "text/html"  }
+  #element :link, as: :url_notype, value: :href, with: { type: nil  }
+  #element :link, as: :feed_url_link, value: :href, with: { type: "application/atom+xml"  } # rubocop:disable Metrics/LineLength
+  #element :"atom10:link", as: :feed_url_atom10_link, value: :href, with: { type: "application/atom+xml"  }
+  #elements :"atom10:link", as: :hubs, value: :href, with: { rel: "hub"  }
   elements :entry, as: :entries, module: Exfeed.Parser.AtomFeedBurner.Entry
 
   defmodule Entry do
