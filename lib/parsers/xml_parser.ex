@@ -112,9 +112,6 @@ defmodule Exfeed.Parser.XML do
 
     if opts[:module], do: opts[:module].parse(value), else: value
   end
-  defp value_matcher([{_, _, [value]}]) when is_binary(value), do: value
   defp value_matcher({_, _, [value]}) when is_binary(value), do: value
-  defp value_matcher({_, _, value}), do: value
-  defp value_matcher([]), do: ""
   defp value_matcher(value), do: value
 end
