@@ -72,16 +72,16 @@ defmodule Exfeed.Parser.XML do
   end
 
   def get_element(source, name, as: key) do
-    %{key => node_value(source, name)}
+    %{key => get_value(source, name)}
   end
   def get_element(source, name, []) do
-    %{name => node_value(source, name)}
+    %{name => get_value(source, name)}
   end
   def get_element(source, name, as: key, module: module) do
-    %{key => node_value(source, name, module)}
+    %{key => get_value(source, name, module)}
   end
   def get_element(source, name, module: module) do
-    %{name => node_value(source, name, module)}
+    %{name => get_value(source, name, module)}
   end
 
   def get_elements(source, name, as: key, module: module) do
@@ -94,12 +94,12 @@ defmodule Exfeed.Parser.XML do
   def get_elements(source, name, as: key) do
     values = source
              |> Floki.find(Atom.to_string name)
-             |> Enum.map(&node_value/1)
+             |> Enum.map(&value_matcher/1)
 
     %{key => values}
   end
 
-  defp node_value(source, name) do
+  defp get_value(source, name) do
     name = if is_binary(name), do: name, else: Atom.to_string(name)
 
     try_exact_find = fn(source, name) ->
@@ -116,16 +116,16 @@ defmodule Exfeed.Parser.XML do
     # for example when theres another node with the same name
     # but with a namespace
     |> try_exact_find.(name)
-    |> node_value()
+    |> value_matcher()
   end
-  def node_value(source, name, module) do
+  defp get_value(source, name, module) do
     source
-    |> node_value(Atom.to_string name)
+    |> get_value(Atom.to_string name)
     |> module.parse()
   end
-  defp node_value([{_, _, [value]}]) when is_binary(value), do: value
-  defp node_value({_, _, [value]}) when is_binary(value), do: value
-  defp node_value({_, _, value}), do: value
-  defp node_value([]), do: ""
-  defp node_value(value), do: value
+  defp value_matcher([{_, _, [value]}]) when is_binary(value), do: value
+  defp value_matcher({_, _, [value]}) when is_binary(value), do: value
+  defp value_matcher({_, _, value}), do: value
+  defp value_matcher([]), do: ""
+  defp value_matcher(value), do: value
 end
