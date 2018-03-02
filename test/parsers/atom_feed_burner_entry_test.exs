@@ -45,6 +45,10 @@ defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
     assert entry.summary == summary
   end
 
+  test "should parse the image", %{entry: entry} do
+    assert entry.image == "http://www.image.com/image.jpg"
+  end
+
   @tag :pending
   test "should parse the published date", %{entry: entry} do
     #published = Time.parse_safely "Thu Jan 22 15:50:22 UTC 2009"

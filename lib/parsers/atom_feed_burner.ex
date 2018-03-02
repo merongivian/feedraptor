@@ -21,8 +21,8 @@ defmodule Exfeed.Parser.AtomFeedBurner do
     element :summary
     element :content
 
-    #element :"media:content", as: :image, value: :url
-    #element :enclosure, as: :image, value: :href
+    element :"media:content", as: :image, value: :url
+    element :enclosure, as: :image, value: :href
 
     element :published
     element :id, as: :entry_id

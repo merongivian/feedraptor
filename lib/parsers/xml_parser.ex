@@ -86,7 +86,7 @@ defmodule Exfeed.Parser.XML do
   def get_elements(source, name, as: key) do
     values = source
              |> Floki.find(Atom.to_string name)
-             |> Enum.map(&value_matcher/1)
+             |> Enum.map(&value_extractor/1)
 
     %{key => values}
   end
@@ -108,10 +108,24 @@ defmodule Exfeed.Parser.XML do
             # for example when theres another node with the same name
             # but with a namespace
             |> try_exact_find.(name)
-            |> value_matcher()
+            |> value_extractor(opts)
 
     if opts[:module], do: opts[:module].parse(value), else: value
   end
-  defp value_matcher({_, _, [value]}) when is_binary(value), do: value
+
+  defp value_extractor(nil), do: nil
+  defp value_extractor(nil, opts), do: nil
+  defp value_extractor(value, opts \\ []) do
+    if opts[:value] do
+      value
+      |> Floki.attribute(Atom.to_string opts[:value])
+      |> List.first()
+    else
+      value_matcher(value)
+    end
+  end
+
+  defp value_matcher({_, _, [value]}), do: value
+  defp value_matcher({_, _, value}) when is_list(value), do: value
   defp value_matcher(value), do: value
 end
