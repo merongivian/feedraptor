@@ -44,7 +44,6 @@ defmodule Exfeed.Parser.AtomEntryTest do
     #expect(entry.published).to eq published
   end
 
-  @tag :pending
   test "should parse the categories", %{entry: entry} do
     assert entry.categories == ~w(Turkey Seattle)
   end

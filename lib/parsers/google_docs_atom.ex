@@ -6,7 +6,7 @@ defmodule Exfeed.Parser.GoogleDocsAtom do
   element :subtitle, as: :description
   #element :link, as: :url, value: :href, with: { type: "text/html" }
   #element :link, as: :feed_url, value: :href, with: { type: "application/atom+xml" } # rubocop:disable Metrics/LineLength
-  #elements :link, as: :links, value: :href
+  elements :link, as: :links, value: :href
   elements :entry, as: :entries, module: Exfeed.Parser.GoogleDocsAtom.Entry
 
   defmodule Entry do
@@ -23,8 +23,8 @@ defmodule Exfeed.Parser.GoogleDocsAtom do
     element :issued, as: :published
     element :updated
     element :modified, as: :updated
-    #elements :category, as: :categories, value: :term
-    #elements :link, as: :links, value: :href
+    elements :category, as: :categories, value: :term
+    elements :link, as: :links, value: :href
     element :"docs:md5checksum", as: :checksum
     element :"docs:filename", as: :original_filename
     element :"docs:suggestedfilename", as: :suggested_filename

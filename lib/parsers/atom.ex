@@ -28,7 +28,7 @@ defmodule Exfeed.Parser.Atom do
     element :issued, as: :published
     element :updated
     element :modified, as: :updated
-    #elements :category, as: :categories, value: :term
-    #elements :link, as: :links, value: :href
+    elements :category, as: :categories, value: :term
+    elements :link, as: :links, value: :href
   end
 end

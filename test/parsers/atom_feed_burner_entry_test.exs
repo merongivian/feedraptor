@@ -55,7 +55,6 @@ defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
     #expect(entry.published).to eq published
   end
 
-  @tag :pending
   test "should parse the categories", %{entry: entry} do
     assert entry.categories == ["Ruby", "Another Category"]
   end

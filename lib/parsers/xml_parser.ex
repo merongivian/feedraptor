@@ -72,26 +72,27 @@ defmodule Exfeed.Parser.XML do
   end
 
   def get_element(source, name, opts \\ []) do
-    value = get_value(source, name, Keyword.drop(opts, [:as]))
+    value = get_element_value(source, name, Keyword.drop(opts, [:as]))
     %{opts[:as] || name => value}
   end
 
-  def get_elements(source, name, as: key, module: module) do
+  def get_elements(source, name, opts \\ []) do
+    get_values = fn(parsed_elements, opts) ->
+      if opts[:module] do
+        Enum.map(parsed_elements, &opts[:module].parse/1)
+      else
+        Enum.map(parsed_elements, & value_extractor(&1, opts))
+      end
+    end
+
     values = source
              |> Floki.find(Atom.to_string name)
-             |> Enum.map(&module.parse/1)
+             |> get_values.(opts)
 
-    %{key => values}
-  end
-  def get_elements(source, name, as: key) do
-    values = source
-             |> Floki.find(Atom.to_string name)
-             |> Enum.map(&value_extractor/1)
-
-    %{key => values}
+    %{opts[:as] => values}
   end
 
-  defp get_value(source, name, opts) do
+  defp get_element_value(source, name, opts) do
     name = if is_binary(name), do: name, else: Atom.to_string(name)
 
     try_exact_find = fn(source, name) ->
