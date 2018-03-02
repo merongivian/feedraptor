@@ -71,17 +71,9 @@ defmodule Exfeed.Parser.XML do
     end
   end
 
-  def get_element(source, name, as: key) do
-    %{key => get_value(source, name)}
-  end
-  def get_element(source, name, []) do
-    %{name => get_value(source, name)}
-  end
-  def get_element(source, name, as: key, module: module) do
-    %{key => get_value(source, name, module)}
-  end
-  def get_element(source, name, module: module) do
-    %{name => get_value(source, name, module)}
+  def get_element(source, name, opts \\ []) do
+    value = get_value(source, name, Keyword.drop(opts, [:as]))
+    %{opts[:as] || name => value}
   end
 
   def get_elements(source, name, as: key, module: module) do
@@ -99,7 +91,7 @@ defmodule Exfeed.Parser.XML do
     %{key => values}
   end
 
-  defp get_value(source, name) do
+  defp get_value(source, name, opts) do
     name = if is_binary(name), do: name, else: Atom.to_string(name)
 
     try_exact_find = fn(source, name) ->
@@ -110,18 +102,15 @@ defmodule Exfeed.Parser.XML do
       end
     end
 
-    source
-    |> Floki.find(String.replace(name, ":", "|"))
-    # NOTE: floki.find sometimes returns more than one value
-    # for example when theres another node with the same name
-    # but with a namespace
-    |> try_exact_find.(name)
-    |> value_matcher()
-  end
-  defp get_value(source, name, module) do
-    source
-    |> get_value(Atom.to_string name)
-    |> module.parse()
+    value = source
+            |> Floki.find(String.replace(name, ":", "|"))
+            # NOTE: floki.find sometimes returns more than one value
+            # for example when theres another node with the same name
+            # but with a namespace
+            |> try_exact_find.(name)
+            |> value_matcher()
+
+    if opts[:module], do: opts[:module].parse(value), else: value
   end
   defp value_matcher([{_, _, [value]}]) when is_binary(value), do: value
   defp value_matcher({_, _, [value]}) when is_binary(value), do: value
