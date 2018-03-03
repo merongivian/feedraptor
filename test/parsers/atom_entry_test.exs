@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.AtomEntryTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.AtomEntryTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    entry = Exfeed.Parser.Atom.parse(load_sample_atom_feed).entries
+    entry = Feedraptor.Parser.Atom.parse(load_sample_atom_feed).entries
             |> List.first
 
     {:ok, entry: entry}

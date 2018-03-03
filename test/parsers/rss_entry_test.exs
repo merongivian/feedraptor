@@ -1,10 +1,10 @@
 defmodule Feedjira.Parser.RSS.EntryTest do
-  import Exfeed.SampleFeeds
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    entry = Exfeed.Parser.RSS.parse(load_sample_rss_feed).entries |> List.first
+    entry = Feedraptor.Parser.RSS.parse(load_sample_rss_feed).entries |> List.first
     {:ok, entry: entry}
   end
 

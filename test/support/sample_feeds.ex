@@ -1,4 +1,4 @@
-defmodule Exfeed.SampleFeeds do
+defmodule Feedraptor.SampleFeeds do
   @feeds [
     sample_atom_middleman_feed:               "FeedjiraBlog.xml",
     sample_atom_feed:                         "AmazonWebServicesBlog.xml",

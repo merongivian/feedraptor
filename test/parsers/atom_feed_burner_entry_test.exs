@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.AtomFeedBurnerEntryTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    entry = Exfeed.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed).entries
+    entry = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed).entries
             |> List.first
 
     {:ok, entry: entry}
@@ -16,7 +16,7 @@ defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
 
   test "should be able to fetch a url via the 'alternate' rel if no origLink exists", %{entry: entry} do
     xml = File.read! "test/sample_feeds/PaulDixExplainsNothingAlternate.xml"
-    entry = Exfeed.Parser.AtomFeedBurner.parse(xml).entries |> List.first
+    entry = Feedraptor.Parser.AtomFeedBurner.parse(xml).entries |> List.first
     assert entry.url == "http://feeds.feedburner.com/~r/PaulDixExplainsNothing/~3/519925023/making-a-ruby-c-library-even-faster.html"
   end
 
@@ -27,7 +27,7 @@ defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
   @tag :pending
   test "should parse the url when there is no alternate", %{entry: entry} do
     xml = File.read! "test/sample_feeds/FeedBurnerUrlNoAlternate.xml"
-    entry = Exfeed.Parser.AtomFeedBurner.parse(xml).entries |> List.first
+    entry = Feedraptor.Parser.AtomFeedBurner.parse(xml).entries |> List.first
     assert entry.url == "http://example.com/QQQQ.html"
   end
 

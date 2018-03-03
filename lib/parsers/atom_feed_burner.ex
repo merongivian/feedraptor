@@ -1,5 +1,5 @@
-defmodule Exfeed.Parser.AtomFeedBurner do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.AtomFeedBurner do
+  alias Feedraptor.Parser.XML
   use XML
 
   element :title
@@ -9,7 +9,7 @@ defmodule Exfeed.Parser.AtomFeedBurner do
   element :link, as: :feed_url_link, value: :href, with: [type: "application/atom+xml"]
   element :"atom10:link", as: :feed_url_atom10_link, value: :href, with: [type: "application/atom+xml"]
   elements :"atom10:link", as: :hubs, value: :href, with: [rel: "hub"]
-  elements :entry, as: :entries, module: Exfeed.Parser.AtomFeedBurner.Entry
+  elements :entry, as: :entries, module: Feedraptor.Parser.AtomFeedBurner.Entry
 
   defmodule Entry do
     use XML

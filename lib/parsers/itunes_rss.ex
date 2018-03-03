@@ -1,11 +1,11 @@
-defmodule Exfeed.Parser.ItunesRSS do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.ItunesRSS do
+  alias Feedraptor.Parser.XML
   use XML
 
   # RSS 2.0 elements that need including
   element :copyright
   element :description
-  element :image, module: Exfeed.Parser.RSSImage
+  element :image, module: Feedraptor.Parser.RSSImage
   element :language
   element :lastbuilddate, as: :last_built
   element :link, as: :url
@@ -32,11 +32,11 @@ defmodule Exfeed.Parser.ItunesRSS do
 
   # iTunes RSS feeds can have multiple main categories and multiple
   # sub-categories per category.
-  #elements :"itunes:category", as: :_itunes_categories, module: Exfeed.Parser.ItunesRSS.Category
+  #elements :"itunes:category", as: :_itunes_categories, module: Feedraptor.Parser.ItunesRSS.Category
   elements :"itunes:category", as: :itunes_categories, value: :text
 
-  elements :"itunes:owner", as: :itunes_owners, class: Exfeed.Parser.ItunesRSS.Owner
-  elements :item, as: :entries, module: Exfeed.Parser.ItunesRSS.Item
+  elements :"itunes:owner", as: :itunes_owners, class: Feedraptor.Parser.ItunesRSS.Owner
+  elements :item, as: :entries, module: Feedraptor.Parser.ItunesRSS.Item
 
   defmodule Owner do
     use XML

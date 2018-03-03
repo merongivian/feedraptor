@@ -1,5 +1,5 @@
-defmodule Exfeed.Parser.GoogleDocsAtom do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.GoogleDocsAtom do
+  alias Feedraptor.Parser.XML
   use XML
 
   element :title
@@ -7,7 +7,7 @@ defmodule Exfeed.Parser.GoogleDocsAtom do
   element :link, as: :url, value: :href, with: [type: "text/html"]
   element :link, as: :feed_url, value: :href, with: [type: "application/atom+xml"]
   elements :link, as: :links, value: :href
-  elements :entry, as: :entries, module: Exfeed.Parser.GoogleDocsAtom.Entry
+  elements :entry, as: :entries, module: Feedraptor.Parser.GoogleDocsAtom.Entry
 
   defmodule Entry do
     use XML

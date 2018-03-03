@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.AtomYoutubeEntryTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.AtomYoutubeEntryTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    entry = Exfeed.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed).entries
+    entry = Feedraptor.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed).entries
             |> List.first
 
     {:ok, entry: entry}

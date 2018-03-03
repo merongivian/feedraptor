@@ -1,5 +1,5 @@
-defmodule Exfeed.Parser.AtomFeedBurnerTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.AtomFeedBurnerTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
@@ -10,7 +10,7 @@ defmodule Exfeed.Parser.AtomFeedBurnerTest do
 
   describe "parsing old style feeds" do
     setup do
-      feed = Exfeed.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed)
+      feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed)
       {:ok, feed: feed}
     end
 
@@ -45,7 +45,7 @@ defmodule Exfeed.Parser.AtomFeedBurnerTest do
 
   describe "parsing alternate style feeds" do
     setup do
-      feed = Exfeed.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed_alternate)
+      feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed_alternate)
       {:ok, feed: feed}
     end
 

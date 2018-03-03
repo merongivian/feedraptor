@@ -1,5 +1,5 @@
-defmodule Exfeed.Parser.RSS do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.RSS do
+  alias Feedraptor.Parser.XML
   use XML
 
   element :title
@@ -8,8 +8,8 @@ defmodule Exfeed.Parser.RSS do
   element :ttl
   element :language
   element :lastbuilddate, as: :last_built
-  elements :item, as: :entries, module: Exfeed.Parser.RSS.Entry
-  element :image, module: Exfeed.Parser.RSSImage
+  elements :item, as: :entries, module: Feedraptor.Parser.RSS.Entry
+  element :image, module: Feedraptor.Parser.RSSImage
 
   defmodule Entry do
     use XML

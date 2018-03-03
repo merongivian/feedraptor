@@ -1,9 +1,9 @@
-defmodule Exfeed.Parser.XML do
+defmodule Feedraptor.Parser.XML do
   @doc false
   defmacro __using__(_) do
     quote do
-      import Exfeed.Parser.XML, only: [element: 2, element: 1, elements: 2, elements: 1]
-      @before_compile Exfeed.Parser.XML
+      import Feedraptor.Parser.XML, only: [element: 2, element: 1, elements: 2, elements: 1]
+      @before_compile Feedraptor.Parser.XML
 
       Module.register_attribute(__MODULE__, :element_definitions, accumulate: true)
       Module.register_attribute(__MODULE__, :elements_definitions, accumulate: true)
@@ -15,14 +15,14 @@ defmodule Exfeed.Parser.XML do
     quote do
       def parse(source) do
         parsed_element_definitions =
-         Exfeed.Parser.XML.execute_definitions(
+         Feedraptor.Parser.XML.execute_definitions(
             source,
             @element_definitions,
             :get_element
           )
 
         parsed_elements_definitions =
-          Exfeed.Parser.XML.execute_definitions(
+          Feedraptor.Parser.XML.execute_definitions(
             source,
             @elements_definitions,
             :get_elements

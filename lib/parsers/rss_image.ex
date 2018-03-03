@@ -1,5 +1,5 @@
-defmodule Exfeed.Parser.RSSImage do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.RSSImage do
+  alias Feedraptor.Parser.XML
   use XML
 
   element :url

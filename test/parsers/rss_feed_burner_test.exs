@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.RssFeedBurnerTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.RssFeedBurnerTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    feed = Exfeed.Parser.RSSFeedBurner.parse(load_sample_rss_feed_burner_feed)
+    feed = Feedraptor.Parser.RSSFeedBurner.parse(load_sample_rss_feed_burner_feed)
     {:ok, feed: feed}
   end
 

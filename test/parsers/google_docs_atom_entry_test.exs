@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.GoogleDocsAtomEntryTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.GoogleDocsAtomEntryTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    entry = Exfeed.Parser.GoogleDocsAtom.parse(load_sample_google_docs_list_feed).entries
+    entry = Feedraptor.Parser.GoogleDocsAtom.parse(load_sample_google_docs_list_feed).entries
             |> List.first
 
     {:ok, entry: entry}

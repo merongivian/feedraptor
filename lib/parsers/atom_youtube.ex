@@ -1,5 +1,5 @@
-defmodule Exfeed.Parser.AtomYoutube do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.AtomYoutube do
+  alias Feedraptor.Parser.XML
   use XML
 
   element :title
@@ -8,7 +8,7 @@ defmodule Exfeed.Parser.AtomYoutube do
   element :name, as: :author
   element :"yt:channelid", as: :youtube_channel_id
 
-  elements :entry, as: :entries, module: Exfeed.Parser.AtomYoutube.Entry
+  elements :entry, as: :entries, module: Feedraptor.Parser.AtomYoutube.Entry
 
   defmodule Entry do
     use XML

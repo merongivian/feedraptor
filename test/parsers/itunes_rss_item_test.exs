@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.ItunesRSS.ItemTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.ItunesRSS.ItemTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    item = Exfeed.Parser.ItunesRSS.parse(load_sample_itunes_feed).entries
+    item = Feedraptor.Parser.ItunesRSS.parse(load_sample_itunes_feed).entries
            |> List.first
 
     {:ok, item: item}

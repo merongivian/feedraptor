@@ -1,0 +1,2 @@
+defmodule Feedraptor do
+end

@@ -1,12 +1,12 @@
-defmodule Exfeed.Parser.RSSFeedBurner do
-  alias Exfeed.Parser.XML
+defmodule Feedraptor.Parser.RSSFeedBurner do
+  alias Feedraptor.Parser.XML
   use XML
 
   element :title
   element :description
   element :link, as: :url
   element :lastbuilddate, as: :last_built
-  elements :item, as: :entries, module: Exfeed.Parser.RSSFeedBurner.Entry
+  elements :item, as: :entries, module: Feedraptor.Parser.RSSFeedBurner.Entry
 
   defmodule Entry do
     use XML

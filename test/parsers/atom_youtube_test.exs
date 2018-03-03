@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.AtomYoutubeTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.AtomYoutubeTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    feed = Exfeed.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed)
+    feed = Feedraptor.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed)
     {:ok, feed: feed}
   end
 

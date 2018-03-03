@@ -1,10 +1,10 @@
-defmodule Exfeed.Parser.RssFeedBurnerEntryTest do
-  import Exfeed.SampleFeeds
+defmodule Feedraptor.Parser.RssFeedBurnerEntryTest do
+  import Feedraptor.SampleFeeds
 
   use ExUnit.Case, async: true
 
   setup do
-    entry = Exfeed.Parser.RSSFeedBurner.parse(load_sample_rss_feed_burner_feed).entries
+    entry = Feedraptor.Parser.RSSFeedBurner.parse(load_sample_rss_feed_burner_feed).entries
             |> List.first
 
     {:ok, entry: entry}
