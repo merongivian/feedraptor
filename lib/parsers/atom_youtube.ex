@@ -3,8 +3,8 @@ defmodule Exfeed.Parser.AtomYoutube do
   use XML
 
   element :title
-  #element :link, as: :url, value: :href, with: { rel: "alternate" }
-  #element :link, as: :feed_url, value: :href, with: { rel: "self" }
+  element :link, as: :url, value: :href, with: [rel: "alternate"]
+  element :link, as: :feed_url, value: :href, with: [rel: "self"]
   element :name, as: :author
   element :"yt:channelid", as: :youtube_channel_id
 
@@ -14,7 +14,7 @@ defmodule Exfeed.Parser.AtomYoutube do
     use XML
 
     element :title
-    #element :link, as: :url, value: :href, with: { rel: "alternate" }
+    element :link, as: :url, value: :href, with: [rel: "alternate"]
     element :name, as: :author
     element :"media:description", as: :content
     element :summary

@@ -3,6 +3,8 @@ defmodule Exfeed.SampleFeeds do
     sample_atom_middleman_feed:               "FeedjiraBlog.xml",
     sample_atom_feed:                         "AmazonWebServicesBlog.xml",
     sample_atom_entry_content:                "AmazonWebServicesBlogFirstEntryContent.xml",
+    sample_atom_hub:                          "SamRuby.xml",
+    sample_atom_url:                          "atom_with_link_tag_for_url_unmarked.xml",
     sample_feedburner_atom_feed:              "PaulDixExplainsNothing.xml",
     sample_feedburner_atom_feed_alternate:    "GiantRobotsSmashingIntoOtherGiantRobots.xml",
     sample_feedburner_atom_entry_content:     "PaulDixExplainsNothingFirstEntryContent.xml",

@@ -4,17 +4,17 @@ defmodule Exfeed.Parser.Atom do
 
   element :title
   element :subtitle, as: :description
-  #element :link, as: :url, value: :href, with: [type: "text/html"]
-  #element :link, as: :feed_url, value: :href, with: [rel: "self"]
-  #elements :link, as: :links, value: :href
-  #elements :link, as: :hubs, value: :href, with: [rel: "hub"]
+  element :link, as: :url, value: :href, with: [type: "text/html"]
+  element :link, as: :feed_url, value: :href, with: [rel: "self"]
+  elements :link, as: :links, value: :href
+  elements :link, as: :hubs, value: :href, with: [rel: "hub"]
   elements :entry, as: :entries, module: Exfeed.Parser.Atom.Entry
 
   defmodule Entry do
     use XML
 
     element :title
-    #element :link, as: :url, value: :href, with: { type: "text/html", rel: "alternate" } # rubocop:disable Metrics/LineLength
+    element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]
     element :name, as: :author
     element :content
     element :summary

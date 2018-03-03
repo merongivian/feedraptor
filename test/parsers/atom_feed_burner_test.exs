@@ -67,7 +67,6 @@ defmodule Exfeed.Parser.AtomFeedBurnerTest do
       assert feed.feed_url "http://feeds.feedburner.com/GiantRobotsSmashingIntoOtherGiantRobots"
     end
 
-    @tag :pending
     test "should parse hub urls", %{feed: feed} do
       assert Enum.count(feed.hubs) == 1
     end

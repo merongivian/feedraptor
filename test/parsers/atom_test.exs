@@ -3,22 +3,16 @@ defmodule Exfeed.Parser.AtomTest do
 
   use ExUnit.Case, async: true
 
-  #test "should parse the url even when it doesn't have the type='text/html' attribute" do # rubocop:disable Metrics/LineLength
-    #xml = load_sample "atom_with_link_tag_for_url_unmarked.xml"
-    #feed = Atom.parse xml
-    #expect(feed.url).to eq "http://www.innoq.com/planet/"
-  #end
+  test "should parse the url" do
+    feed = Exfeed.Parser.Atom.parse load_sample_atom_url
+    assert feed.url == "http://www.innoq.com/planet/"
+  end
 
-  #test "should parse the feed_url even when it doesn't have the type='application/atom+xml' attribute" do # rubocop:disable Metrics/LineLength
-    #feed = Atom.parse(load_sample("atom_with_link_tag_for_url_unmarked.xml"))
-    #expect(feed.feed_url).to eq "http://www.innoq.com/planet/atom.xml"
-  #end
-
-  #test "should parse the hub urls" do
-    #feed_with_hub = Atom.parse(load_sample("SamRuby.xml"))
-    #expect(feed_with_hub.hubs.count).to eq 1
-    #expect(feed_with_hub.hubs.first).to eq "http://pubsubhubbub.appspot.com/"
-  #end
+  test "should parse the hub urls" do
+    feed_with_hub = Exfeed.Parser.Atom.parse(load_sample_atom_hub)
+    assert Enum.count(feed_with_hub.hubs) == 1
+    assert List.first(feed_with_hub.hubs) == "http://pubsubhubbub.appspot.com/"
+  end
 
   describe "parsing" do
     setup do
@@ -31,7 +25,7 @@ defmodule Exfeed.Parser.AtomTest do
     end
 
     test "should parse the description", %{feed: feed} do
-      assert feed.description == "Amazon Web Services, Products, Tools, and Developer Information..." # rubocop:disable Metrics/LineLength
+      assert feed.description == "Amazon Web Services, Products, Tools, and Developer Information..."
     end
 
     @tag :pending

@@ -14,16 +14,8 @@ defmodule Exfeed.Parser.AtomEntryTest do
     assert entry.title == "AWS Job: Architect & Designer Position in Turkey"
   end
 
-  @tag :pending
   test "should parse the url", %{entry: entry} do
     assert entry.url == "http://aws.typepad.com/aws/2009/01/aws-job-architect-designer-position-in-turkey.html"
-  end
-
-  @tag :pending
-  test "should parse the url even when", %{entry: entry} do
-    #xml = load_sample("atom_with_link_tag_for_url_unmarked.xml")
-    #entries = Feedjira::Parser::Atom.parse(xml).entries
-    #expect(entries.first.url).to eq "http://www.innoq.com/blog/phaus/2009/07/ja.html"
   end
 
   test "should parse the author", %{entry: entry} do

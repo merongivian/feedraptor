@@ -16,12 +16,10 @@ defmodule Exfeed.Parser.AtomYoutubeTest do
     assert feed.author == "Google Author"
   end
 
-  @tag :pending
   test "should parse the url", %{feed: feed} do
     assert feed.url == "http://www.youtube.com/user/Google"
   end
 
-  @tag :pending
   test "should parse the feed_url", %{feed: feed} do
     assert feed.feed_url == "http://www.youtube.com/feeds/videos.xml?user=google"
   end

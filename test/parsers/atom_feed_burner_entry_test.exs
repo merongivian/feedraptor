@@ -14,11 +14,10 @@ defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
     assert entry.title == "Making a Ruby C library even faster"
   end
 
-  @tag :pending
-  test "should be able to fetch a url via the 'alternate' rel if no origLink exists", %{entry: entry} do # rubocop:disable Metrics/LineLength
-    #xml = File.read("#{File.dirname(__FILE__)}/../../sample_feeds/PaulDixExplainsNothingAlternate.xml") # rubocop:disable Metrics/LineLength
-    #entry = Feedjira::Parser::AtomFeedBurner.parse(xml).entries.first
-    #expect(entry.url).to eq("http://feeds.feedburner.com/~r/PaulDixExplainsNothing/~3/519925023/making-a-ruby-c-library-even-faster.html") # rubocop:disable Metrics/LineLength
+  test "should be able to fetch a url via the 'alternate' rel if no origLink exists", %{entry: entry} do
+    xml = File.read! "test/sample_feeds/PaulDixExplainsNothingAlternate.xml"
+    entry = Exfeed.Parser.AtomFeedBurner.parse(xml).entries |> List.first
+    assert entry.url == "http://feeds.feedburner.com/~r/PaulDixExplainsNothing/~3/519925023/making-a-ruby-c-library-even-faster.html"
   end
 
   test "should parse the url", %{entry: entry} do
@@ -27,9 +26,9 @@ defmodule Exfeed.Parser.AtomFeedBurnerEntryTest do
 
   @tag :pending
   test "should parse the url when there is no alternate", %{entry: entry} do
-    #xml = File.read("#{File.dirname(__FILE__)}/../../sample_feeds/FeedBurnerUrlNoAlternate.xml") # rubocop:disable Metrics/LineLength
-    #entry = Feedjira::Parser::AtomFeedBurner.parse(xml).entries.first
-    #expect(entry.url).to eq "http://example.com/QQQQ.html"
+    xml = File.read! "test/sample_feeds/FeedBurnerUrlNoAlternate.xml"
+    entry = Exfeed.Parser.AtomFeedBurner.parse(xml).entries |> List.first
+    assert entry.url == "http://example.com/QQQQ.html"
   end
 
   test "should parse the author", %{entry: entry} do

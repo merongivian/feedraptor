@@ -85,18 +85,19 @@ defmodule Exfeed.Parser.XML do
       end
     end
 
+    name = Atom.to_string(name)
     values = source
-             |> Floki.find(Atom.to_string name)
+             |> Floki.find(String.replace(name, ":", "|") <> create_attributes_selector(opts[:with]))
              |> get_values.(opts)
 
     %{opts[:as] => values}
   end
 
   defp get_element_value(source, name, opts) do
-    name = if is_binary(name), do: name, else: Atom.to_string(name)
+    name = Atom.to_string(name)
 
     try_exact_find = fn(source, name) ->
-      if is_list(source) do
+      if is_list(source) and Enum.count(source) > 1 do
         Enum.find(source, &(elem(&1, 0) == name))
       else
         source
@@ -104,7 +105,7 @@ defmodule Exfeed.Parser.XML do
     end
 
     value = source
-            |> Floki.find(String.replace(name, ":", "|"))
+            |> Floki.find(String.replace(name, ":", "|") <> create_attributes_selector(opts[:with]))
             # NOTE: floki.find sometimes returns more than one value
             # for example when theres another node with the same name
             # but with a namespace
@@ -126,7 +127,15 @@ defmodule Exfeed.Parser.XML do
     end
   end
 
+  defp value_matcher([{_, _, [value]}]), do: value
   defp value_matcher({_, _, [value]}), do: value
   defp value_matcher({_, _, value}) when is_list(value), do: value
   defp value_matcher(value), do: value
+
+  defp create_attributes_selector(nil), do: ""
+  defp create_attributes_selector(attributes \\ []) do
+    Enum.reduce attributes, "", fn({name, value}, selector) ->
+      selector <> ~s([#{name}="#{value}"])
+    end
+  end
 end

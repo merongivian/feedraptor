@@ -4,8 +4,8 @@ defmodule Exfeed.Parser.GoogleDocsAtom do
 
   element :title
   element :subtitle, as: :description
-  #element :link, as: :url, value: :href, with: { type: "text/html" }
-  #element :link, as: :feed_url, value: :href, with: { type: "application/atom+xml" } # rubocop:disable Metrics/LineLength
+  element :link, as: :url, value: :href, with: [type: "text/html"]
+  element :link, as: :feed_url, value: :href, with: [type: "application/atom+xml"]
   elements :link, as: :links, value: :href
   elements :entry, as: :entries, module: Exfeed.Parser.GoogleDocsAtom.Entry
 
@@ -13,7 +13,7 @@ defmodule Exfeed.Parser.GoogleDocsAtom do
     use XML
 
     element :title
-    #element :link, as: :url, value: :href, with: { type: "text/html", rel: "alternate" } # rubocop:disable Metrics/LineLength
+    element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]
     element :name, as: :author
     element :content
     element :summary

@@ -14,7 +14,6 @@ defmodule Exfeed.Parser.AtomYoutubeEntryTest do
     assert entry.title == "The Google app: Questions Title"
   end
 
-  @tag :pending
   test "should have the url", %{entry: entry} do
     assert entry.url == "http://www.youtube.com/watch?v=5shykyfmb28"
   end
