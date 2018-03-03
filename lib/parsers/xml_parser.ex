@@ -87,7 +87,7 @@ defmodule Exfeed.Parser.XML do
 
     name = Atom.to_string(name)
     values = source
-             |> Floki.find(String.replace(name, ":", "|") <> create_attributes_selector(opts[:with]))
+             |> Floki.find(create_selector(name, opts[:with]))
              |> get_values.(opts)
 
     %{opts[:as] => values}
@@ -105,7 +105,7 @@ defmodule Exfeed.Parser.XML do
     end
 
     value = source
-            |> Floki.find(String.replace(name, ":", "|") <> create_attributes_selector(opts[:with]))
+            |> Floki.find(create_selector(name, opts[:with]))
             # NOTE: floki.find sometimes returns more than one value
             # for example when theres another node with the same name
             # but with a namespace
@@ -131,6 +131,14 @@ defmodule Exfeed.Parser.XML do
   defp value_matcher({_, _, [value]}), do: value
   defp value_matcher({_, _, value}) when is_list(value), do: value
   defp value_matcher(value), do: value
+
+  defp create_selector(name, attributes) do
+    name = name
+           |> String.replace(":", "|")
+           |> String.replace("_", "-")
+
+    name <> create_attributes_selector(attributes)
+  end
 
   defp create_attributes_selector(nil), do: ""
   defp create_attributes_selector(attributes \\ []) do
