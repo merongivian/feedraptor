@@ -4,7 +4,7 @@ defmodule Feedjira.Parser.RSS.EntryTest do
   use ExUnit.Case, async: true
 
   setup do
-    entry = Feedraptor.Parser.RSS.parse(load_sample_rss_feed).entries |> List.first
+    entry = Feedraptor.Parser.RSS.parse(load_sample_rss_feed()).entries |> List.first
     {:ok, entry: entry}
   end
 
@@ -21,7 +21,7 @@ defmodule Feedjira.Parser.RSS.EntryTest do
   end
 
   test "parsing the content", %{entry: entry} do
-    assert entry.content == load_sample_rss_entry_content
+    assert entry.content == load_sample_rss_entry_content()
   end
 
   test "should provide a summary", %{entry: entry} do

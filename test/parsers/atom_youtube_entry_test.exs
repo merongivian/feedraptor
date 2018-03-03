@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.AtomYoutubeEntryTest do
   use ExUnit.Case, async: true
 
   setup do
-    entry = Feedraptor.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed).entries
+    entry = Feedraptor.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed()).entries
             |> List.first
 
     {:ok, entry: entry}

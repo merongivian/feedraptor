@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.RssTest do
   use ExUnit.Case, async: true
 
   setup do
-    feed = Feedraptor.Parser.RSS.parse(load_sample_rss_feed)
+    feed = Feedraptor.Parser.RSS.parse(load_sample_rss_feed())
     {:ok, feed: feed}
   end
 

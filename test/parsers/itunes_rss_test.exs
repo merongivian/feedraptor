@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.ItunesRSSTest do
   use ExUnit.Case, async: true
 
   setup do
-    feed = Feedraptor.Parser.ItunesRSS.parse(load_sample_itunes_feed)
+    feed = Feedraptor.Parser.ItunesRSS.parse(load_sample_itunes_feed())
 
     {:ok, feed: feed}
   end

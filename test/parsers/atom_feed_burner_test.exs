@@ -10,7 +10,7 @@ defmodule Feedraptor.Parser.AtomFeedBurnerTest do
 
   describe "parsing old style feeds" do
     setup do
-      feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed)
+      feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed())
       {:ok, feed: feed}
     end
 
@@ -45,7 +45,7 @@ defmodule Feedraptor.Parser.AtomFeedBurnerTest do
 
   describe "parsing alternate style feeds" do
     setup do
-      feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed_alternate)
+      feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed_alternate())
       {:ok, feed: feed}
     end
 

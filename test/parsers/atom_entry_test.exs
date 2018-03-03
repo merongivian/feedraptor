@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.AtomEntryTest do
   use ExUnit.Case, async: true
 
   setup do
-    entry = Feedraptor.Parser.Atom.parse(load_sample_atom_feed).entries
+    entry = Feedraptor.Parser.Atom.parse(load_sample_atom_feed()).entries
             |> List.first
 
     {:ok, entry: entry}
@@ -23,7 +23,7 @@ defmodule Feedraptor.Parser.AtomEntryTest do
   end
 
   test "should parse the content", %{entry: entry} do
-    assert entry.content == load_sample_atom_entry_content
+    assert entry.content == load_sample_atom_entry_content()
   end
 
   test "should provide a summary", %{entry: entry} do

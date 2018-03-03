@@ -4,19 +4,19 @@ defmodule Feedraptor.Parser.AtomTest do
   use ExUnit.Case, async: true
 
   test "should parse the url" do
-    feed = Feedraptor.Parser.Atom.parse load_sample_atom_url
+    feed = Feedraptor.Parser.Atom.parse load_sample_atom_url()
     assert feed.url == "http://www.innoq.com/planet/"
   end
 
   test "should parse the hub urls" do
-    feed_with_hub = Feedraptor.Parser.Atom.parse(load_sample_atom_hub)
+    feed_with_hub = Feedraptor.Parser.Atom.parse(load_sample_atom_hub())
     assert Enum.count(feed_with_hub.hubs) == 1
     assert List.first(feed_with_hub.hubs) == "http://pubsubhubbub.appspot.com/"
   end
 
   describe "parsing" do
     setup do
-      feed = Feedraptor.Parser.Atom.parse(load_sample_atom_feed)
+      feed = Feedraptor.Parser.Atom.parse(load_sample_atom_feed())
       {:ok, feed: feed}
     end
 
@@ -50,7 +50,7 @@ defmodule Feedraptor.Parser.AtomTest do
 
   describe "parsing url and feed url based on rel attribute" do
     setup do
-      feed = Feedraptor.Parser.Atom.parse(load_sample_atom_middleman_feed)
+      feed = Feedraptor.Parser.Atom.parse(load_sample_atom_middleman_feed())
       {:ok, feed: feed}
     end
 

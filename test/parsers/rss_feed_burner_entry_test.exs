@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.RssFeedBurnerEntryTest do
   use ExUnit.Case, async: true
 
   setup do
-    entry = Feedraptor.Parser.RSSFeedBurner.parse(load_sample_rss_feed_burner_feed).entries
+    entry = Feedraptor.Parser.RSSFeedBurner.parse(load_sample_rss_feed_burner_feed()).entries
             |> List.first
 
     {:ok, entry: entry}
@@ -24,11 +24,11 @@ defmodule Feedraptor.Parser.RssFeedBurnerEntryTest do
   end
 
   test "should parse the content", %{entry: entry} do
-    assert entry.content == load_sample_rss_feed_burner_entry_content
+    assert entry.content == load_sample_rss_feed_burner_entry_content()
   end
 
   test "should provide a summary", %{entry: entry} do
-    assert entry.summary == load_sample_rss_feed_burner_entry_description
+    assert entry.summary == load_sample_rss_feed_burner_entry_description()
   end
 
   @tag :pending

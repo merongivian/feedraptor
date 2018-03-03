@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.AtomYoutubeTest do
   use ExUnit.Case, async: true
 
   setup do
-    feed = Feedraptor.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed)
+    feed = Feedraptor.Parser.AtomYoutube.parse(load_sample_youtube_atom_feed())
     {:ok, feed: feed}
   end
 

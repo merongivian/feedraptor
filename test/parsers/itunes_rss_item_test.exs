@@ -4,7 +4,7 @@ defmodule Feedraptor.Parser.ItunesRSS.ItemTest do
   use ExUnit.Case, async: true
 
   setup do
-    item = Feedraptor.Parser.ItunesRSS.parse(load_sample_itunes_feed).entries
+    item = Feedraptor.Parser.ItunesRSS.parse(load_sample_itunes_feed()).entries
            |> List.first
 
     {:ok, item: item}
