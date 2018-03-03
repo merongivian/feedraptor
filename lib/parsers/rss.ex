@@ -9,18 +9,7 @@ defmodule Exfeed.Parser.RSS do
   element :language
   element :lastbuilddate, as: :last_built
   elements :item, as: :entries, module: Exfeed.Parser.RSS.Entry
-  element :image, module: Exfeed.Parser.RSS.Image
-
-  defmodule Image do
-    use XML
-
-    element :url
-    element :title
-    element :link
-    element :width
-    element :height
-    element :description
-  end
+  element :image, module: Exfeed.Parser.RSSImage
 
   defmodule Entry do
     use XML
