@@ -16,7 +16,7 @@ Elixir thanks to [Floki](https://github.com/philss/floki)
 
 # Parsed Feed
 
-%Feedraptor.Feed{
+%{
   title: "Liftoff News",
   url: "http://liftoff.msfc.nasa.gov/",
   description: "Liftoff to Space Exploration",
@@ -24,7 +24,7 @@ Elixir thanks to [Floki](https://github.com/philss/floki)
   published: #DateTime<2018-02-21 14:00:14.362567Z>,
   built:, #DateTime<2018-02-21 14:00:14.362567Z>,
   entries: [
-    %Feedraptor.Entry{
+    %{
       title: "Star City",
       link: "http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp",
       author: "John Doe",
@@ -32,24 +32,37 @@ Elixir thanks to [Floki](https://github.com/philss/floki)
       summary: "<div>summary</div>",
       published: #DateTime<2018-02-21 14:00:14.362567Z>
     },
-    %Feedraptor.Entry{..},
+    %{..},
     ..
   ]
 }
 ```
 
-## Why [Feedraptor]( https://github.com/merongivian/Feedraptor) instead of [FeederEx](https://github.com/manukall/feeder_ex) ?
+## Supported Feeds
+
+* RSS
+* RSS FeedBurner
+* Atom
+* Atom FeedBurner
+* Atom Youtube
+* Google Docs Atom
+* Itunes RSS
+* JSON Feed ----**COMING SOON**---- 😅
+
+## Why [feedraptor]( https://github.com/merongivian/Feedraptor) instead of [feeder_ex](https://github.com/manukall/feeder_ex) ?
 
 `feeder_ex` is a wrapper for Erlang's `feeder`. Feeder has support for a limited type
 of feeds and doesn't parse all entrie's fields (like content)
 
-## Why [Floki](https://github.com/philss/floki) instead of [Xmerl](https://github.com/erlang-labs/xmerl) ?
+## Why [floki](https://github.com/philss/floki) instead of [xmerl](https://github.com/erlang-labs/xmerl) ?
 
 There a couple of good libraries that use `xmerl` and do a great job parsing
 xml, like [Quinn](https://github.com/nhu313/Quinn). The problem with `xmerl` is
-that it boots an `application` which breaks when an invalid xml is passed, this is
-not ideal when building retriable rss crawlers with OTP. Floki requires a little bit of more work to
-parse but at least im using elixir, so i know what to expect if something goes wrong.
+that it crashes when it receives a malformed XML. This is not ideal when fetching a bunch of
+feeds that might be malformed, and crawling those trough OTP.
+
+Also xmerl is build in Erlang. Parsing trough Floki requires a little bit more work but at least i'm using Elixir,
+so i know what to expect if something goes wrong.
 
 ## Installation
 
@@ -59,7 +72,7 @@ by adding `Feedraptor` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:Feedraptor, "~> 0.1.0"}
+    {:feedraptor, "~> 0.1.0"}
   ]
 end
 ```
