@@ -48,10 +48,10 @@ defmodule Feedraptor.Parser.AtomFeedBurnerEntryTest do
     assert entry.image == "http://www.image.com/image.jpg"
   end
 
-  @tag :pending
   test "should parse the published date", %{entry: entry} do
-    #published = Time.parse_safely "Thu Jan 22 15:50:22 UTC 2009"
-    #expect(entry.published).to eq published
+    assert entry.published.year  == 2009
+    assert entry.published.month == 1
+    assert entry.published.day   == 22
   end
 
   test "should parse the categories", %{entry: entry} do

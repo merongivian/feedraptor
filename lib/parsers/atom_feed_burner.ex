@@ -12,25 +12,35 @@ defmodule Feedraptor.Parser.AtomFeedBurner do
   elements :entry, as: :entries, module: Feedraptor.Parser.AtomFeedBurner.Entry
 
   defmodule Entry do
-    use XML
+    alias Feedraptor.Helper
 
-    element :title
-    element :name, as: :author
-    element :"feedburner:origlink", as: :url
-    element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]
-    element :summary
-    element :content
+    defmodule Definition do
+      use XML
 
-    element :"media:content", as: :image, value: :url
-    element :enclosure, as: :image, value: :href
+      element :title
+      element :name, as: :author
+      element :"feedburner:origlink", as: :url
+      element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]
+      element :summary
+      element :content
 
-    element :published
-    element :id, as: :entry_id
-    element :issued, as: :published
-    element :created, as: :published
-    element :updated
-    element :modified, as: :updated
-    elements :category, as: :categories, value: :term
-    elements :link, as: :links, value: :href
+      element :"media:content", as: :image, value: :url
+      element :enclosure, as: :image, value: :href
+
+      element :published
+      element :id, as: :entry_id
+      element :issued, as: :published
+      element :created, as: :published
+      element :updated
+      element :modified, as: :updated
+      elements :category, as: :categories, value: :term
+      elements :link, as: :links, value: :href
+    end
+
+    def parse(raw_entry) do
+      raw_entry
+      |> Definition.parse()
+      |> Helper.update_date_fields()
+    end
   end
 end

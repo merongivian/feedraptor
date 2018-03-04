@@ -21,4 +21,10 @@ defmodule Feedraptor.Parser.GoogleDocsAtomEntryTest do
   test "should have the custom suggested filename element", %{entry: entry} do
     assert entry.suggested_filename == "TaxDocument.pdf"
   end
+
+  test "should have the updated date", %{entry: entry} do
+    assert entry.updated.year  == 2009
+    assert entry.updated.month == 7
+    assert entry.updated.day   == 29
+  end
 end

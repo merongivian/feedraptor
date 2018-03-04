@@ -22,14 +22,16 @@ defmodule Feedraptor.Parser.AtomYoutubeEntryTest do
     assert entry.entry_id == "yt:video:5shykyfmb28"
   end
 
-  @tag :pending
   test "should have the published date", %{entry: entry} do
-    #expect(entry.published).to eq Time.parse_safely("2015-05-04T00:01:27+00:00")
+    assert entry.published.year  == 2015
+    assert entry.published.month == 5
+    assert entry.published.day   == 4
   end
 
-  @tag :pending
   test "should have the updated date", %{entry: entry} do
-    #expect(entry.updated).to eq Time.parse_safely("2015-05-13T17:38:30+00:00")
+    assert entry.updated.year  == 2015
+    assert entry.updated.month == 5
+    assert entry.updated.day   == 13
   end
 
   test "should have the content populated from the media:description element", %{entry: entry} do

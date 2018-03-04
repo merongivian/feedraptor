@@ -53,10 +53,10 @@ defmodule Feedraptor.Parser.ItunesRSS.ItemTest do
     assert item.entry_id == "http://example.com/podcasts/archive/aae20050615.m4a"
   end
 
-  @tag :pending
   test "should parse the published date", %{item: item} do
-    #published = Time.parse_safely "Wed Jun 15 19:00:00 UTC 2005"
-    #assert item.published == published
+    assert item.published.year  == 2005
+    assert item.published.month == 6
+    assert item.published.day   == 15
   end
 
   test "should parse the duration", %{item: item} do

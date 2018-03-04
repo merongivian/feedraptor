@@ -29,10 +29,10 @@ defmodule Feedjira.Parser.RSS.EntryTest do
     assert entry.summary == summary
   end
 
-  @tag :pending
   test "parsing the published date", %{entry: entry} do
-    #published = Time.parse_safely "Thu Dec 04 17:17:49 UTC 2008"
-    #assert entry.published == published
+    assert entry.published.year  == 2008
+    assert entry.published.month == 12
+    assert entry.published.day   == 4
   end
 
   test "parsing the categories", %{entry: entry} do

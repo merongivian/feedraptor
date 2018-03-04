@@ -11,27 +11,37 @@ defmodule Feedraptor.Parser.AtomYoutube do
   elements :entry, as: :entries, module: Feedraptor.Parser.AtomYoutube.Entry
 
   defmodule Entry do
-    use XML
+    alias Feedraptor.Helper
 
-    element :title
-    element :link, as: :url, value: :href, with: [rel: "alternate"]
-    element :name, as: :author
-    element :"media:description", as: :content
-    element :summary
-    element :published
-    element :id, as: :entry_id
-    element :updated
-    element :"yt:videoid", as: :youtube_video_id
-    element :"media:title", as: :media_title
-    element :"media:content", as: :media_url, value: :url
-    element :"media:content", as: :media_type, value: :type
-    element :"media:content", as: :media_width, value: :width
-    element :"media:content", as: :media_height, value: :height
-    element :"media:thumbnail", as: :media_thumbnail_url, value: :url
-    element :"media:thumbnail", as: :media_thumbnail_width, value: :width
-    element :"media:thumbnail", as: :media_thumbnail_height, value: :height
-    element :"media:starrating", as: :media_star_count, value: :count
-    element :"media:starrating", as: :media_star_average, value: :average
-    element :"media:statistics", as: :media_views, value: :views
+    defmodule Definition do
+      use XML
+
+      element :title
+      element :link, as: :url, value: :href, with: [rel: "alternate"]
+      element :name, as: :author
+      element :"media:description", as: :content
+      element :summary
+      element :published
+      element :id, as: :entry_id
+      element :updated
+      element :"yt:videoid", as: :youtube_video_id
+      element :"media:title", as: :media_title
+      element :"media:content", as: :media_url, value: :url
+      element :"media:content", as: :media_type, value: :type
+      element :"media:content", as: :media_width, value: :width
+      element :"media:content", as: :media_height, value: :height
+      element :"media:thumbnail", as: :media_thumbnail_url, value: :url
+      element :"media:thumbnail", as: :media_thumbnail_width, value: :width
+      element :"media:thumbnail", as: :media_thumbnail_height, value: :height
+      element :"media:starrating", as: :media_star_count, value: :count
+      element :"media:starrating", as: :media_star_average, value: :average
+      element :"media:statistics", as: :media_views, value: :views
+    end
+
+    def parse(raw_entry) do
+      raw_entry
+      |> Definition.parse()
+      |> Helper.update_date_fields()
+    end
   end
 end

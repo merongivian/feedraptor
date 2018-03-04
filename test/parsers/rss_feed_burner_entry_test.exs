@@ -31,10 +31,10 @@ defmodule Feedraptor.Parser.RssFeedBurnerEntryTest do
     assert entry.summary == load_sample_rss_feed_burner_entry_description()
   end
 
-  @tag :pending
   test "should parse the published date", %{entry: entry} do
-    #published = Time.parse_safely "Wed Nov 02 17:25:27 UTC 2011"
-    #assert entry.published == published
+    assert entry.published.year  == 2011
+    assert entry.published.month == 11
+    assert entry.published.day   == 2
   end
 
   test "should parse the categories", %{entry: entry} do

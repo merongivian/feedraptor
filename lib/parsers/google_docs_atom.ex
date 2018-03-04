@@ -10,23 +10,33 @@ defmodule Feedraptor.Parser.GoogleDocsAtom do
   elements :entry, as: :entries, module: Feedraptor.Parser.GoogleDocsAtom.Entry
 
   defmodule Entry do
-    use XML
+    alias Feedraptor.Helper
 
-    element :title
-    element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]
-    element :name, as: :author
-    element :content
-    element :summary
-    element :published
-    element :id, as: :entry_id
-    element :created, as: :published
-    element :issued, as: :published
-    element :updated
-    element :modified, as: :updated
-    elements :category, as: :categories, value: :term
-    elements :link, as: :links, value: :href
-    element :"docs:md5checksum", as: :checksum
-    element :"docs:filename", as: :original_filename
-    element :"docs:suggestedfilename", as: :suggested_filename
+    defmodule Definition do
+      use XML
+
+      element :title
+      element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]
+      element :name, as: :author
+      element :content
+      element :summary
+      element :published
+      element :id, as: :entry_id
+      element :created, as: :published
+      element :issued, as: :published
+      element :updated
+      element :modified, as: :updated
+      elements :category, as: :categories, value: :term
+      elements :link, as: :links, value: :href
+      element :"docs:md5checksum", as: :checksum
+      element :"docs:filename", as: :original_filename
+      element :"docs:suggestedfilename", as: :suggested_filename
+    end
+
+    def parse(raw_entry) do
+      raw_entry
+      |> Definition.parse()
+      |> Helper.update_date_fields()
+    end
   end
 end

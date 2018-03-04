@@ -1,6 +1,16 @@
 defmodule Feedraptor.Helper do
-  def update_date_fields(map, keys) do
-    Enum.reduce(%{})
+  def update_date_fields(fields, opts \\ []) do
+    keys   = opts[:keys] || [:published, :updated]
+    format = opts[:format] || "ISO_8601"
+
+    new_dates = Enum.reduce keys, %{}, fn(date_key, date_fields) ->
+                  Map.merge(
+                    date_fields,
+                    %{date_key => to_date_time(fields[date_key], format)}
+                  )
+                end
+
+    Map.merge(fields, new_dates)
   end
 
   def to_date_time(nil, _), do: nil

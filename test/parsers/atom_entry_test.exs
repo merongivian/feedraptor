@@ -30,20 +30,20 @@ defmodule Feedraptor.Parser.AtomEntryTest do
     assert entry.summary == "Late last year an entrepreneur from Turkey visited me at Amazon HQ in Seattle. We talked about his plans to use AWS as part of his new social video portal startup. I won't spill any beans before he's ready to..." # rubocop:disable Metrics/LineLength
   end
 
-  @tag :pending
   test "should parse the published date", %{entry: entry} do
-    #published = Time.parse_safely "Fri Jan 16 18:21:00 UTC 2009"
-    #expect(entry.published).to eq published
+    assert entry.published.year  == 2009
+    assert entry.published.month == 1
+    assert entry.published.day   == 16
   end
 
   test "should parse the categories", %{entry: entry} do
     assert entry.categories == ~w(Turkey Seattle)
   end
 
-  @tag :pending
   test "should parse the updated date", %{entry: entry} do
-    #updated = Time.parse_safely "Fri Jan 16 18:21:00 UTC 2009"
-    #expect(entry.updated).to eq updated
+    assert entry.updated.year  == 2009
+    assert entry.updated.month == 1
+    assert entry.updated.day   == 16
   end
 
   test "should parse the id", %{entry: entry} do
