@@ -46,7 +46,6 @@ defmodule Feedraptor.Parser.ItunesRSS do
   end
 
   defmodule Item do
-    @date_format "RFC_1123"
     alias Feedraptor.Helper
 
     defmodule Definition do
@@ -86,7 +85,7 @@ defmodule Feedraptor.Parser.ItunesRSS do
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
-      |> Helper.update_date_fields(format: @date_format)
+      |> Helper.update_date_fields()
     end
   end
 
