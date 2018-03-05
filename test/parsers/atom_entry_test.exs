@@ -27,7 +27,7 @@ defmodule Feedraptor.Parser.AtomEntryTest do
   end
 
   test "should provide a summary", %{entry: entry} do
-    assert entry.summary == "Late last year an entrepreneur from Turkey visited me at Amazon HQ in Seattle. We talked about his plans to use AWS as part of his new social video portal startup. I won't spill any beans before he's ready to..." # rubocop:disable Metrics/LineLength
+    assert entry.summary == "Late last year an entrepreneur from Turkey visited me at Amazon HQ in Seattle. We talked about his plans to use AWS as part of his new social video portal startup. I won't spill any beans before he's ready to..."
   end
 
   test "should parse the published date", %{entry: entry} do

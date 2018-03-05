@@ -6,19 +6,19 @@ defmodule Feedraptor.Parser.AtomTest do
   describe "will_parse/1" do
     test "should return true for an atom feed" do
       assert Feedraptor.Parser.Atom.will_parse?(load_sample_atom_feed())
-		end
+    end
 
-		test "should return false for an rdf feed" do
+    test "should return false for an rdf feed" do
       refute Feedraptor.Parser.Atom.will_parse?(load_sample_rdf_feed())
-		end
+    end
 
-		test "should return false for an rss feedburner feed" do
+    test "should return false for an rss feedburner feed" do
       refute Feedraptor.Parser.Atom.will_parse?(load_sample_rss_feed_burner_feed())
-		end
+    end
 
-		test "should return true for an atom feed that has line breaks in between attributes in the <feed> node" do # rubocop:disable Metrics/LineLength
+    test "should return true for an atom feed that has line breaks in between attributes in the <feed> node" do
       assert Feedraptor.Parser.Atom.will_parse?(load_sample_atom_feed_line_breaks())
-		end
+    end
   end
 
   describe "parsing" do

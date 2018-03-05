@@ -11,12 +11,12 @@ defmodule Feedraptor.Parser.RssFeedBurnerEntryTest do
   end
 
   test "should parse the title", %{entry: entry} do
-    title = "Angie’s List Sets Price Range IPO At $11 To $13 Per Share; Valued At Over $600M" # rubocop:disable Metrics/LineLength
+    title = "Angie’s List Sets Price Range IPO At $11 To $13 Per Share; Valued At Over $600M"
     assert entry.title == title
   end
 
   test "should parse the original url", %{entry: entry} do
-    assert entry.url == "http://techcrunch.com/2011/11/02/angies-list-prices-ipo-at-11-to-13-per-share-valued-at-over-600m/" # rubocop:disable Metrics/LineLength
+    assert entry.url == "http://techcrunch.com/2011/11/02/angies-list-prices-ipo-at-11-to-13-per-share-valued-at-over-600m/"
   end
 
   test "should parse the author", %{entry: entry} do

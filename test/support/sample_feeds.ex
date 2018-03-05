@@ -1,6 +1,6 @@
 defmodule Feedraptor.SampleFeeds do
   @feeds [
-		sample_atom_feed_line_breaks:             "AtomFeedWithSpacesAroundEquals.xml",
+    sample_atom_feed_line_breaks:             "AtomFeedWithSpacesAroundEquals.xml",
     sample_atom_middleman_feed:               "FeedjiraBlog.xml",
     sample_atom_feed:                         "AmazonWebServicesBlog.xml",
     sample_atom_entry_content:                "AmazonWebServicesBlogFirstEntryContent.xml",

@@ -27,7 +27,7 @@ defmodule Feedraptor.Parser.ItunesRSS.ItemTest do
   end
 
   test "should parse the summary", %{item: item} do
-    summary = "This week we talk about salt and pepper shakers, comparing and contrasting pour rates, construction materials, and overall aesthetics. Come and join the party!" # rubocop:disable Metrics/LineLength
+    summary = "This week we talk about salt and pepper shakers, comparing and contrasting pour rates, construction materials, and overall aesthetics. Come and join the party!"
     assert item.itunes_summary == summary
   end
 

@@ -40,7 +40,7 @@ defmodule Feedraptor.Parser.AtomFeedBurnerEntryTest do
   end
 
   test "should provide a summary", %{entry: entry} do
-    summary = "Last week I released the first version of a SAX based XML parsing library called SAX-Machine. It uses Nokogiri, which uses libxml, so it's pretty fast. However, I felt that it could be even faster. The only question was how..." # rubocop:disable Metrics/LineLength
+    summary = "Last week I released the first version of a SAX based XML parsing library called SAX-Machine. It uses Nokogiri, which uses libxml, so it's pretty fast. However, I felt that it could be even faster. The only question was how..."
     assert entry.summary == summary
   end
 

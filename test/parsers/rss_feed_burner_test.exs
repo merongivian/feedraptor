@@ -36,7 +36,7 @@ defmodule Feedraptor.Parser.RSSFeedBurnerTest do
     end
 
     test "should parse the description", %{feed: feed} do
-      description = "TechCrunch is a group-edited blog that profiles the companies, products and events defining and transforming the new web." # rubocop:disable Metrics/LineLength
+      description = "TechCrunch is a group-edited blog that profiles the companies, products and events defining and transforming the new web."
       assert feed.description == description
     end
 

@@ -3,10 +3,12 @@ defmodule Feedraptor.Parser.AtomFeedBurnerTest do
 
   use ExUnit.Case, async: true
 
-  #test "should parse hub urls", %{feed: feed} do
-    #feed_with_hub = AtomFeedBurner.parse(load_sample("TypePadNews.xml"))
-    #expect(feed_with_hub.hubs.count).to eq 1
-  #end
+  @tag :pending
+  test "should parse hub urls" do
+    xml = File.read! "test/sample_feeds/TypePadNews.xml"
+    feed_with_hub = Feedraptor.Parser.AtomFeedBurner.parse(xml)
+    assert Enum.count(feed_with_hub.hubs) == 1
+  end
 
   describe "will_parse?/1" do
     test "returns true for a feedburner atom feed" do
@@ -37,7 +39,7 @@ defmodule Feedraptor.Parser.AtomFeedBurnerTest do
     end
 
     test "should parse the description", %{feed: feed} do
-      description = "Entrepreneurship, programming, software development, politics, NYC, and random thoughts." # rubocop:disable Metrics/LineLength
+      description = "Entrepreneurship, programming, software development, politics, NYC, and random thoughts."
       assert feed.description == description
     end
 

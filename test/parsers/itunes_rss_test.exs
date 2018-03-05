@@ -69,7 +69,7 @@ defmodule Feedraptor.Parser.ItunesRSSTest do
     end
 
     test "should parse the image description", %{feed: feed} do
-      description = "All About Everything is a show about everything. Each week we dive into any subject known to man and talk about it as much as we can. Look for our Podcast in the iTunes Music Store" # rubocop:disable Metrics/LineLength
+      description = "All About Everything is a show about everything. Each week we dive into any subject known to man and talk about it as much as we can. Look for our Podcast in the iTunes Music Store"
       assert feed.image.description == description
     end
 
@@ -97,7 +97,7 @@ defmodule Feedraptor.Parser.ItunesRSSTest do
     end
 
     test "should parse the summary", %{feed: feed} do
-      summary = "All About Everything is a show about everything. Each week we dive into any subject known to man and talk about it as much as we can. Look for our Podcast in the iTunes Music Store" # rubocop:disable Metrics/LineLength
+      summary = "All About Everything is a show about everything. Each week we dive into any subject known to man and talk about it as much as we can. Look for our Podcast in the iTunes Music Store"
       assert feed.itunes_summary == summary
     end
 
