@@ -39,4 +39,8 @@ defmodule Feedraptor.Parser.GoogleDocsAtom do
       |> Helper.update_date_fields()
     end
   end
+
+  def will_parse?(xml) do
+    xml =~ ~r{<id>https?://docs\.google\.com/.*\</id\>}
+  end
 end

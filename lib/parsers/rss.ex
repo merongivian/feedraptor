@@ -48,4 +48,8 @@ defmodule Feedraptor.Parser.RSS do
       |> Helper.update_date_fields(format: @date_format)
     end
   end
+
+  def will_parse?(xml) do
+    (xml =~ ~r/\<rss|\<rdf/) && !(xml =~ ~r/feedburner/)
+  end
 end

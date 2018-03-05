@@ -44,4 +44,8 @@ defmodule Feedraptor.Parser.AtomYoutube do
       |> Helper.update_date_fields()
     end
   end
+
+  def will_parse?(xml) do
+    xml =~ ~r{xmlns:yt="http://www.youtube.com/xml/schemas/2015"}
+  end
 end

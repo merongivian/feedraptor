@@ -89,4 +89,8 @@ defmodule Feedraptor.Parser.ItunesRSS do
       |> Helper.update_date_fields(format: @date_format)
     end
   end
+
+  def will_parse?(xml) do
+    xml =~ ~r{xmlns:itunes\s?=\s?[\"\']http://www\.itunes\.com/dtds/podcast-1\.0\.dtd[\"\']}
+  end
 end

@@ -8,6 +8,24 @@ defmodule Feedraptor.Parser.AtomFeedBurnerTest do
     #expect(feed_with_hub.hubs.count).to eq 1
   #end
 
+  describe "will_parse?/1" do
+    test "returns true for a feedburner atom feed" do
+      assert Feedraptor.Parser.AtomFeedBurner.will_parse?(load_sample_feedburner_atom_feed())
+    end
+
+    test "returns false for an rdf feed" do
+      refute Feedraptor.Parser.AtomFeedBurner.will_parse?(load_sample_rdf_feed())
+    end
+
+    test "returns false for a regular atom feed" do
+      refute Feedraptor.Parser.AtomFeedBurner.will_parse?(load_sample_atom_feed())
+    end
+
+    test "returns false for an rss feedburner feed" do
+      refute Feedraptor.Parser.AtomFeedBurner.will_parse?(load_sample_rss_feed_burner_feed())
+    end
+  end
+
   describe "parsing old style feeds" do
     setup do
       feed = Feedraptor.Parser.AtomFeedBurner.parse(load_sample_feedburner_atom_feed())

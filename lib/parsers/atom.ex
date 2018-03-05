@@ -41,4 +41,8 @@ defmodule Feedraptor.Parser.Atom do
       |> Helper.update_date_fields()
     end
   end
+
+  def will_parse?(xml) do
+   xml =~ ~r{\<feed[^\>]+xmlns\s?=\s?[\"\'](http://www\.w3\.org/2005/Atom|http://purl\.org/atom/ns\#)[\"\'][^\>]*\>}
+  end
 end

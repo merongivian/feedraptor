@@ -3,21 +3,39 @@ defmodule Feedraptor.Parser.AtomTest do
 
   use ExUnit.Case, async: true
 
-  test "should parse the url" do
-    feed = Feedraptor.Parser.Atom.parse load_sample_atom_url()
-    assert feed.url == "http://www.innoq.com/planet/"
-  end
+  describe "will_parse/1" do
+    test "should return true for an atom feed" do
+      assert Feedraptor.Parser.Atom.will_parse?(load_sample_atom_feed())
+		end
 
-  test "should parse the hub urls" do
-    feed_with_hub = Feedraptor.Parser.Atom.parse(load_sample_atom_hub())
-    assert Enum.count(feed_with_hub.hubs) == 1
-    assert List.first(feed_with_hub.hubs) == "http://pubsubhubbub.appspot.com/"
+		test "should return false for an rdf feed" do
+      refute Feedraptor.Parser.Atom.will_parse?(load_sample_rdf_feed())
+		end
+
+		test "should return false for an rss feedburner feed" do
+      refute Feedraptor.Parser.Atom.will_parse?(load_sample_rss_feed_burner_feed())
+		end
+
+		test "should return true for an atom feed that has line breaks in between attributes in the <feed> node" do # rubocop:disable Metrics/LineLength
+      assert Feedraptor.Parser.Atom.will_parse?(load_sample_atom_feed_line_breaks())
+		end
   end
 
   describe "parsing" do
     setup do
       feed = Feedraptor.Parser.Atom.parse(load_sample_atom_feed())
       {:ok, feed: feed}
+    end
+
+    test "should parse the url" do
+      feed = Feedraptor.Parser.Atom.parse load_sample_atom_url()
+      assert feed.url == "http://www.innoq.com/planet/"
+    end
+
+    test "should parse the hub urls" do
+      feed_with_hub = Feedraptor.Parser.Atom.parse(load_sample_atom_hub())
+      assert Enum.count(feed_with_hub.hubs) == 1
+      assert List.first(feed_with_hub.hubs) == "http://pubsubhubbub.appspot.com/"
     end
 
     test "should parse the title", %{feed: feed} do
@@ -29,7 +47,7 @@ defmodule Feedraptor.Parser.AtomTest do
     end
 
     @tag :pending
-    test "should parse the url", %{feed: feed} do
+    test "parsing the url", %{feed: feed} do
       assert feed.url == "http://aws.typepad.com/aws/"
     end
 

@@ -43,4 +43,8 @@ defmodule Feedraptor.Parser.AtomFeedBurner do
       |> Helper.update_date_fields()
     end
   end
+
+  def will_parse?(xml) do
+    ((xml =~ ~r/Atom/) && (xml =~ ~r/feedburner/) && !(xml =~ ~r/\<rss|\<rdf/)) || false
+  end
 end
