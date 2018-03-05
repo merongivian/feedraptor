@@ -14,7 +14,7 @@ defmodule Feedraptor.Parser.AtomFeedBurnerEntryTest do
     assert entry.title == "Making a Ruby C library even faster"
   end
 
-  test "should be able to fetch a url via the 'alternate' rel if no origLink exists", %{entry: entry} do
+  test "should be able to fetch a url via the 'alternate' rel if no origLink exists" do
     xml = File.read! "test/sample_feeds/PaulDixExplainsNothingAlternate.xml"
     entry = Feedraptor.Parser.AtomFeedBurner.parse(xml).entries |> List.first
     assert entry.url == "http://feeds.feedburner.com/~r/PaulDixExplainsNothing/~3/519925023/making-a-ruby-c-library-even-faster.html"
@@ -25,7 +25,7 @@ defmodule Feedraptor.Parser.AtomFeedBurnerEntryTest do
   end
 
   @tag :pending
-  test "should parse the url when there is no alternate", %{entry: entry} do
+  test "should parse the url when there is no alternate" do
     xml = File.read! "test/sample_feeds/FeedBurnerUrlNoAlternate.xml"
     entry = Feedraptor.Parser.AtomFeedBurner.parse(xml).entries |> List.first
     assert entry.url == "http://example.com/QQQQ.html"
