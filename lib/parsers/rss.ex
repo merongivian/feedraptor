@@ -1,16 +1,18 @@
 defmodule Feedraptor.Parser.RSS do
   alias Feedraptor.Parser.XML
-  import Feedraptor.Helper
   use XML
 
-  element :title
-  element :link, as: :url
   element :description
-  element :ttl
+  element :image, module: Feedraptor.Parser.RSSImage
   element :language
   element :lastbuilddate, as: :last_built
+  element :link, as: :url
+  element :rss, as: :version, value: :version
+  element :title
+  element :ttl
+  elements :"atom:link", as: :hubs, value: :href, with: [rel: "hub"]
   elements :item, as: :entries, module: Feedraptor.Parser.RSS.Entry
-  element :image, module: Feedraptor.Parser.RSSImage
+
 
   defmodule Entry do
     alias Feedraptor.Helper

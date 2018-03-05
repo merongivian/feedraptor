@@ -23,7 +23,6 @@ defmodule Feedraptor.Parser.RssTest do
       {:ok, feed: feed}
     end
 
-    @tag :pending
     test "parsing the version", %{feed: feed}  do
       assert feed.version == "2.0"
     end
@@ -48,7 +47,6 @@ defmodule Feedraptor.Parser.RssTest do
       assert feed.last_built == "Sat, 07 Sep 2002 09:42:31 GMT"
     end
 
-    @tag :pending
     test "parsing the hub urls", %{feed: feed} do
       assert Enum.count(feed.hubs) == 1
       assert List.first(feed.hubs) == "http://pubsubhubbub.appspot.com/"

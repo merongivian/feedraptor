@@ -14,7 +14,7 @@ defmodule Feedraptor.Helper do
 
   def to_date_time(nil), do: nil
   def to_date_time(date_time_string) do
-    to_rfs1123 = fn(string) ->
+    to_rfs1123 = fn ->
       case Timex.parse(date_time_string, "{RFC1123}") do
         {:ok, date_time} -> date_time
         {:error, _}      -> date_time_string
@@ -23,7 +23,7 @@ defmodule Feedraptor.Helper do
 
     case DateTime.from_iso8601(date_time_string) do
       {:ok, date_time, _} -> date_time
-      {:error, _}         -> to_rfs1123.(date_time_string)
+      {:error, _}         -> to_rfs1123.()
     end
   end
 end

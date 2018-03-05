@@ -38,12 +38,6 @@ defmodule Feedraptor.Parser.AtomYoutubeEntryTest do
     assert entry.content == "A question is the most powerful force in the world. It can start you on an adventure or spark a connection. See where a question can take you. The Google app is available on iOS and Android. Download the app here: http://www.google.com/search/about/download"
   end
 
-  # TODO: return nil also when key doesnt exist in map
-  @tag :pending
-  test "should have the summary but blank", %{entry: entry} do
-    assert entry.summary == nil
-  end
-
   test "should have the custom youtube video id", %{entry: entry} do
     assert entry.youtube_video_id == "5shykyfmb28"
   end

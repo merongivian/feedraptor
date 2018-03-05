@@ -39,12 +39,12 @@ defmodule FeedraptorTest do
     assert Enum.count(feed.entries) == 20
   end
 
-  #@tag :pending
-  #test "with nested dc:identifier it does not overwrite entry_id" do
-    #feed = Feedraptor.parse(sample_rss_feed_huffpost_ca)
-    #expect(feed.title.strip).to eq "HuffPost Canada - Athena2 - All Posts"
-    #expect(feed.entries.size).to eq 2
-    #expect(feed.entries.first.id).to eq "23246627"
-    #expect(feed.entries.last.id.strip).to eq "1"
-  #end
+  @tag :pending
+  test "with nested dc:identifier it does not overwrite entry_id" do
+    feed = "" #Feedraptor.parse(load_sample_rss_feed_huffpost_ca())
+    assert String.trim(feed.title)    == "HuffPost Canada - Athena2 - All Posts"
+    assert Enum.count(feed.entries)    == 2
+    assert List.first(feed.entries).id == "23246627"
+    assert String.trim(List.last(feed.entries).id) == "1"
+  end
 end

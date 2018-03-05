@@ -46,19 +46,12 @@ defmodule Feedraptor.Parser.AtomTest do
       assert feed.description == "Amazon Web Services, Products, Tools, and Developer Information..."
     end
 
-    @tag :pending
     test "parsing the url", %{feed: feed} do
       assert feed.url == "http://aws.typepad.com/aws/"
     end
 
-    @tag :pending
     test "should parse the feed_url", %{feed: feed} do
       assert feed.feed_url == "http://aws.typepad.com/aws/atom.xml"
-    end
-
-    @tag :pending
-    test "should parse no hub urls", %{feed: feed} do
-      assert Enum.count(feed.hubs) == 0
     end
 
     test "should parse entries", %{feed: feed} do
@@ -77,7 +70,6 @@ defmodule Feedraptor.Parser.AtomTest do
       assert feed.url == "http://feedjira.com/blog"
     end
 
-    @tag :pending
     test "should parse feed url", %{feed: feed} do
       assert feed.feed_url == "http://feedjira.com/blog/feed.xml"
     end

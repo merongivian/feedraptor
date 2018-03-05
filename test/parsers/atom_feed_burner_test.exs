@@ -51,11 +51,6 @@ defmodule Feedraptor.Parser.AtomFeedBurnerTest do
       assert feed.feed_url == "http://feeds.feedburner.com/PaulDixExplainsNothing"
     end
 
-    @tag :pending
-    test "should parse no hub urls", %{feed: feed} do
-      assert Enum.count(feed.hubs) == 0
-    end
-
     test "should parse entries", %{feed: feed} do
       assert Enum.count(feed.entries) == 5
     end
