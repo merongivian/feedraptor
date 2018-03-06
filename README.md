@@ -2,40 +2,53 @@
 
 [![Build Status](https://travis-ci.org/merongivian/feedraptor.svg?branch=master)](https://travis-ci.org/merongivian/feedraptor/)
 
-**DISCLAIMER**: This is not ready yet
-
 Feedraptor is an Elixir library for parsing feeds, inspired by Ruby's [Feedjira](https://github.com/feedjira/feedjira). Parsing is done in pure
 Elixir thanks to [Floki](https://github.com/philss/floki)
+
+## Installation
+
+The package can be installed by adding `Feedraptor` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:feedraptor, "~> 0.1.0"}
+  ]
+end
+```
 
 ## Usage
 
 ```elixir
-"http://www.rssboard.org/files/sample-rss-2.xml"
+"https://spectrum.ieee.org/rss/blog/automaton/fulltext"
 |> HTTPoison.get!() #You could use other alternatives like Tesla, HTTPotion, HTTPipe, etc.
+|> Map.get(:body)
 |> Feedraptor.parse()
 
 # Parsed Feed
 
 %{
-  title: "Liftoff News",
-  url: "http://liftoff.msfc.nasa.gov/",
-  description: "Liftoff to Space Exploration",
-  language: "en-us",
-  published: #DateTime<2018-02-21 14:00:14.362567Z>,
-  built:, #DateTime<2018-02-21 14:00:14.362567Z>,
+  image: %{},
+  title: "IEEE Spectrum Automaton Blog",
+  url: "https://spectrum.ieee.org/blog/automaton",
+  version: "2.0"
   entries: [
     %{
-      title: "Star City",
-      link: "http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp",
-      author: "John Doe",
-      content: "<div>content</div>...",
-      summary: "<div>summary</div>",
-      published: #DateTime<2018-02-21 14:00:14.362567Z>
+      author: "Evan Ackerman",
+      categories: ["Robotics", "Robotics/Industrial_Robots"],
+      content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><html>\..."
+      entry_id: "https://spectrum.ieee.org/automaton/robotics/industrial-robots/doxel-ai-startup-using-lidar-equipped-robots-on-construction-sites",
+      image: "https://spectrum.ieee.org/image/MzAxMTA5Ng.jpeg",
+      published: #DateTime<2018-01-24 20:15:00+00:00 GMT GMT>,
+      summary: "Doxel's lidar-equipped robots help track construction projects and catch mistakes as they happen",
+      title: "AI Startup Using Robots and Lidar to Boost Productivity on Construction Sites",
+      updated: nil,
+      url: "https://spectrum.ieee.org/automaton/robotics/industrial-robots/doxel-ai-startup-using-lidar-equipped-robots-on-construction-sites"
     },
-    %{..},
-    ..
+    %{author: "..", ...},
+    %{author: "..", ...}
+    ...
   ]
-}
 ```
 
 ## Supported Feeds
@@ -64,19 +77,3 @@ feeds that might be malformed, and crawling those trough OTP.
 Also xmerl is build in Erlang. Parsing trough Floki requires a little bit more work but at least i'm using Elixir,
 so i know what to expect if something goes wrong.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `Feedraptor` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:feedraptor, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/Feedraptor](https://hexdocs.pm/Feedraptor).
