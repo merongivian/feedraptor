@@ -22,7 +22,7 @@ defmodule Feedraptor.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:floki, "~> 0.19.0"},
+      {:capuli, "~> 0.2.0"},
       {:timex, "~> 3.2"}
     ]
   end

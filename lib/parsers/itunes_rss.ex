@@ -1,6 +1,5 @@
 defmodule Feedraptor.Parser.ItunesRSS do
-  alias Feedraptor.Parser.XML
-  use XML
+  use Capuli
 
   # RSS 2.0 elements that need including
   element :copyright
@@ -39,7 +38,7 @@ defmodule Feedraptor.Parser.ItunesRSS do
   elements :item, as: :entries, module: Feedraptor.Parser.ItunesRSS.Item
 
   defmodule Owner do
-    use XML
+    use Capuli
 
     element :"itunes:name", as: :name
     element :"itunes:email", as: :email
@@ -49,7 +48,7 @@ defmodule Feedraptor.Parser.ItunesRSS do
     alias Feedraptor.Helper
 
     defmodule Definition do
-      use XML
+      use Capuli
 
       element :author
       element :guid, as: :entry_id

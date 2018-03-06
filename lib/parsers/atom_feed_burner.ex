@@ -1,6 +1,5 @@
 defmodule Feedraptor.Parser.AtomFeedBurner do
-  alias Feedraptor.Parser.XML
-  use XML
+  use Capuli
 
   element :title
   element :subtitle, as: :description
@@ -15,7 +14,7 @@ defmodule Feedraptor.Parser.AtomFeedBurner do
     alias Feedraptor.Helper
 
     defmodule Definition do
-      use XML
+      use Capuli
 
       element :title
       element :name, as: :author

@@ -1,6 +1,5 @@
 defmodule Feedraptor.Parser.RSSImage do
-  alias Feedraptor.Parser.XML
-  use XML
+  use Capuli
 
   element :url
   element :title

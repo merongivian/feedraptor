@@ -1,6 +1,5 @@
 defmodule Feedraptor.Parser.GoogleDocsAtom do
-  alias Feedraptor.Parser.XML
-  use XML
+  use Capuli
 
   element :title
   element :subtitle, as: :description
@@ -13,7 +12,7 @@ defmodule Feedraptor.Parser.GoogleDocsAtom do
     alias Feedraptor.Helper
 
     defmodule Definition do
-      use XML
+      use Capuli
 
       element :title
       element :link, as: :url, value: :href, with: [type: "text/html", rel: "alternate"]

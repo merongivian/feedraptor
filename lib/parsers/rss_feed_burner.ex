@@ -1,6 +1,5 @@
 defmodule Feedraptor.Parser.RSSFeedBurner do
-  alias Feedraptor.Parser.XML
-  use XML
+  use Capuli
 
   element :title
   element :description
@@ -12,7 +11,7 @@ defmodule Feedraptor.Parser.RSSFeedBurner do
     alias Feedraptor.Helper
 
     defmodule Definition do
-      use XML
+      use Capuli
 
       element :title
 

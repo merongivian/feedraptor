@@ -1,6 +1,5 @@
 defmodule Feedraptor.Parser.AtomYoutube do
-  alias Feedraptor.Parser.XML
-  use XML
+  use Capuli
 
   element :title
   element :link, as: :url, value: :href, with: [rel: "alternate"]
@@ -14,7 +13,7 @@ defmodule Feedraptor.Parser.AtomYoutube do
     alias Feedraptor.Helper
 
     defmodule Definition do
-      use XML
+      use Capuli
 
       element :title
       element :link, as: :url, value: :href, with: [rel: "alternate"]
