@@ -66,25 +66,11 @@ end
 
 Depends on the type of feed, for more info of supported attributes check the [hex docs](https://hexdocs.pm/feedraptor/Feedraptor.html)
 
-## Why [feedraptor]( https://github.com/merongivian/Feedraptor) instead of [feeder_ex](https://github.com/manukall/feeder_ex) ?
+## Credits
 
-`feeder_ex` is a wrapper for Erlang's `feeder`. Feeder has support for a limited type
-of feeds and doesn't parse all entrie's fields (like content)
-
-## Why [capuli](https://github.com/philss/capuli) instead of [xmerl](https://github.com/erlang-labs/xmerl) ?
-
-There a couple of good libraries that use `xmerl` and do a great job parsing
-xml, like [Quinn](https://github.com/nhu313/Quinn). The problem with `xmerl` is
-that it crashes when it receives a malformed XML, which seems to crash the `xmerl` application
-as well. This is not ideal when fetching a bunch of feeds that might be malformed, and crawling
-those trough OTP.
-
-Also `xmerl` is build in Erlang, `capuli` uses Floki which is built in Elixir.
-
-## Similar Libraries/Credits
-
-After i started this i found a similar library [elixir feed parser](https://github.com/fdietz/elixir-feed-parser), i took
-some ideas from here, particularly date parsing
+After i started this i found a similar library: [elixir feed parser](https://github.com/fdietz/elixir-feed-parser), i took
+some ideas from here, particularly date parsing. I will also like to mention [feeder_ex](https://github.com/manukall/feeder_ex) and
+[quinn](https://github.com/nhu313/Quinn)
 
 ## License
 
