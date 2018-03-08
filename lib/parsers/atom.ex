@@ -37,9 +37,11 @@ defmodule Feedraptor.Parser.Atom do
   elements :entry, as: :entries, module: Feedraptor.Parser.Atom.Entry
 
   defmodule Entry do
+    @moduledoc false
     alias Feedraptor.Helper
 
     defmodule Definition do
+      @moduledoc false
       use Capuli
 
       element :title

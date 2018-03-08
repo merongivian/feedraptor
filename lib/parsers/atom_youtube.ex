@@ -45,9 +45,11 @@ defmodule Feedraptor.Parser.AtomYoutube do
   elements :entry, as: :entries, module: Feedraptor.Parser.AtomYoutube.Entry
 
   defmodule Entry do
+    @moduledoc false
     alias Feedraptor.Helper
 
     defmodule Definition do
+      @moduledoc false
       use Capuli
 
       element :title

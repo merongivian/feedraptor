@@ -1,6 +1,6 @@
 defmodule Feedraptor.Parser.GoogleDocsAtom do
   @moduledoc """
-  Feed Parser for Google Docs feeds
+  Feed Parser for Google Docs Atom feeds
 
   ## Feed properties:
 
@@ -37,9 +37,11 @@ defmodule Feedraptor.Parser.GoogleDocsAtom do
   elements :entry, as: :entries, module: Feedraptor.Parser.GoogleDocsAtom.Entry
 
   defmodule Entry do
+    @moduledoc false
     alias Feedraptor.Helper
 
     defmodule Definition do
+      @moduledoc false
       use Capuli
 
       element :title

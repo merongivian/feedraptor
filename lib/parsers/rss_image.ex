@@ -1,4 +1,5 @@
 defmodule Feedraptor.Parser.RSSImage do
+  @moduledoc false
   use Capuli
 
   element :url

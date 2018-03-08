@@ -1,6 +1,6 @@
 defmodule Feedraptor.Parser.RSSFeedBurner do
   @moduledoc """
-  Feed Parser for Atom feeds
+  Feed Parser for RSS Feedburner feeds
 
   ## Feed properties:
 
@@ -31,9 +31,11 @@ defmodule Feedraptor.Parser.RSSFeedBurner do
   elements :item, as: :entries, module: Feedraptor.Parser.RSSFeedBurner.Entry
 
   defmodule Entry do
+    @moduledoc false
     alias Feedraptor.Helper
 
     defmodule Definition do
+      @moduledoc false
       use Capuli
 
       element :title

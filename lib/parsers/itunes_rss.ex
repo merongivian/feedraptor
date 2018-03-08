@@ -1,6 +1,6 @@
 defmodule Feedraptor.Parser.ItunesRSS do
   @moduledoc """
-  Feed Parser for Google Docs feeds
+  Feed Parser for Itunes RSS feeds
 
   ## Feed properties:
 
@@ -107,6 +107,7 @@ defmodule Feedraptor.Parser.ItunesRSS do
   elements :item, as: :entries, module: Feedraptor.Parser.ItunesRSS.Item
 
   defmodule Owner do
+    @moduledoc false
     use Capuli
 
     element :"itunes:name", as: :name
@@ -114,9 +115,11 @@ defmodule Feedraptor.Parser.ItunesRSS do
   end
 
   defmodule Item do
+    @moduledoc false
     alias Feedraptor.Helper
 
     defmodule Definition do
+      @moduledoc false
       use Capuli
 
       element :author

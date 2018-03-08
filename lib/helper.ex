@@ -1,4 +1,7 @@
 defmodule Feedraptor.Helper do
+  @moduledoc false
+
+  @doc false
   def update_date_fields(fields, opts \\ []) do
     keys = opts[:keys] || [:published, :updated]
 
@@ -12,6 +15,7 @@ defmodule Feedraptor.Helper do
     Map.merge(fields, new_dates)
   end
 
+  @doc false
   def to_date_time(nil), do: nil
   def to_date_time(date_time_string) do
     to_rfs1123 = fn ->
