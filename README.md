@@ -64,7 +64,7 @@ end
 
 ## Supported Feed/Entry properties
 
-Depends on the type of feed, for more info of supported attributes check the [hex docs](https://hexdocs.pm/feedraptor/Feedraptor.html)
+Depends on the type of feed, for more info of supported attributes check the [hex docs](https://hexdocs.pm/feedraptor/0.2.0/api-reference.html)
 
 ## Credits
 
