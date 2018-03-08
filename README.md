@@ -37,13 +37,13 @@ end
       author: "Evan Ackerman",
       categories: ["Robotics", "Robotics/Industrial_Robots"],
       content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><html>\..."
-      entry_id: "https://spectrum.ieee.org/automaton/robotics/industrial-robots/doxel-ai-startup-using-lidar-equipped-robots-on-construction-sites",
+      entry_id: "https://spectrum.ieee.org/automaton/robotics/industrial-robots/doxel...",
       image: "https://spectrum.ieee.org/image/MzAxMTA5Ng.jpeg",
       published: #DateTime<2018-01-24 20:15:00+00:00 GMT GMT>,
-      summary: "Doxel's lidar-equipped robots help track construction projects and catch mistakes as they happen",
+      summary: "Doxel's lidar-equipped robots help track construction projects and catch...",
       title: "AI Startup Using Robots and Lidar to Boost Productivity on Construction Sites",
       updated: nil,
-      url: "https://spectrum.ieee.org/automaton/robotics/industrial-robots/doxel-ai-startup-using-lidar-equipped-robots-on-construction-sites"
+      url: "https://spectrum.ieee.org/automaton/robotics/industrial-robots/doxel-ai-startup-..."
     },
     %{author: "..", ...},
     %{author: "..", ...}
