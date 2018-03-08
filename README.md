@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/merongivian/feedraptor.svg?branch=master)](https://travis-ci.org/merongivian/feedraptor/)
 
 Feedraptor is an Elixir library for parsing feeds, inspired by Ruby's [Feedjira](https://github.com/feedjira/feedjira). Parsing is done in pure
-Elixir thanks to [Floki](https://github.com/philss/floki)
+Elixir thanks to [Capuli](https://github.com/merongivian/capuli)
 
 ## Installation
 
@@ -62,18 +62,30 @@ end
 * Itunes RSS
 * JSON Feed ----**COMING SOON**---- 😅
 
+## Supported Feed/Entry properties
+
+Depends on the type of feed, for more info of supported attributes check the [hex docs](https://hexdocs.pm/feedraptor/Feedraptor.html)
+
 ## Why [feedraptor]( https://github.com/merongivian/Feedraptor) instead of [feeder_ex](https://github.com/manukall/feeder_ex) ?
 
 `feeder_ex` is a wrapper for Erlang's `feeder`. Feeder has support for a limited type
 of feeds and doesn't parse all entrie's fields (like content)
 
-## Why [floki](https://github.com/philss/floki) instead of [xmerl](https://github.com/erlang-labs/xmerl) ?
+## Why [capuli](https://github.com/philss/capuli) instead of [xmerl](https://github.com/erlang-labs/xmerl) ?
 
 There a couple of good libraries that use `xmerl` and do a great job parsing
 xml, like [Quinn](https://github.com/nhu313/Quinn). The problem with `xmerl` is
-that it crashes when it receives a malformed XML. This is not ideal when fetching a bunch of
-feeds that might be malformed, and crawling those trough OTP.
+that it crashes when it receives a malformed XML, which seems to crash the `xmerl` application
+as well. This is not ideal when fetching a bunch of feeds that might be malformed, and crawling
+those trough OTP.
 
-Also xmerl is build in Erlang. Parsing trough Floki requires a little bit more work but at least i'm using Elixir,
-so i know what to expect if something goes wrong.
+Also `xmerl` is build in Erlang, `capuli` uses Floki which is built in Elixir.
 
+## Similar Libraries/Credits
+
+After i started this i found a similar library [elixir feed parser](https://github.com/fdietz/elixir-feed-parser), i took
+some ideas from here, particularly date parsing
+
+## License
+
+Feedraptor is under MIT license. Check the `LICENSE` file for more details.
