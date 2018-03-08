@@ -1,5 +1,5 @@
 %{
-  "capuli": {:hex, :capuli, "0.2.0", "cc5b7223b694608c6cf4e02ef868026191d7f9c004384d0c4d129127ea6fba41", [:mix], [{:floki, "~> 0.19.0", [hex: :floki, repo: "hexpm", optional: false]}], "hexpm"},
+  "capuli": {:hex, :capuli, "0.3.0", "1844affe1f9067e22db0d46df8c22d456d7071df7f9e57de9c6659f4a51babd1", [:mix], [{:floki, "~> 0.19.0", [hex: :floki, repo: "hexpm", optional: false]}], "hexpm"},
   "certifi": {:hex, :certifi, "2.0.0", "a0c0e475107135f76b8c1d5bc7efb33cd3815cb3cf3dea7aefdd174dabead064", [:rebar3], [], "hexpm"},
   "combine": {:hex, :combine, "0.10.0", "eff8224eeb56498a2af13011d142c5e7997a80c8f5b97c499f84c841032e429f", [:mix], [], "hexpm"},
   "earmark": {:hex, :earmark, "1.2.4", "99b637c62a4d65a20a9fb674b8cffb8baa771c04605a80c911c4418c69b75439", [:mix], [], "hexpm"},

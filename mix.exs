@@ -27,7 +27,7 @@ defmodule Feedraptor.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:capuli, "~> 0.2.0"},
+      {:capuli, "~> 0.3.0"},
       {:timex, "~> 3.2"}
     ]
   end
