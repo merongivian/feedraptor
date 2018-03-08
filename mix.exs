@@ -8,7 +8,11 @@ defmodule Feedraptor.MixProject do
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: description(),
+      package: package(),
+      deps: deps(),
+      name: "Feedraptor",
+      source_url: "https://github.com/merongivian/feedraptor"
     ]
   end
 
@@ -22,6 +26,7 @@ defmodule Feedraptor.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ex_doc, ">= 0.0.0", only: :dev},
       {:capuli, "~> 0.2.0"},
       {:timex, "~> 3.2"}
     ]
@@ -29,4 +34,19 @@ defmodule Feedraptor.MixProject do
 
   defp elixirc_paths(:test), do: ["lib","test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp description do
+    """
+    Feed parser built in pure Elixir, Supports RSS(Feedburner/Itunes) and
+    Atom(Feedburner/Youtube/Google Docs)
+    """
+  end
+
+  defp package do
+    [name: :feedraptor,
+     files: ["lib", "mix.exs", "README*"],
+     maintainers: ["Jose Añasco"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/merongivian/feedraptor"}]
+  end
 end
