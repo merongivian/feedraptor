@@ -72,6 +72,13 @@ After i started this i found a similar library: [elixir feed parser](https://git
 some ideas from here, particularly date parsing. I will also like to mention [feeder_ex](https://github.com/manukall/feeder_ex) and
 [quinn](https://github.com/nhu313/Quinn)
 
+## Tasks
+
+- [x] Basic Parsers
+- [ ] JSON Parser
+- [ ] Ability for adding custom parsers
+- [ ] **Maybe** Add elements to an existing parser (modify a parser)
+
 ## License
 
 Feedraptor is under MIT license. Check the `LICENSE` file for more details.
