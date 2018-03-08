@@ -1,4 +1,32 @@
 defmodule Feedraptor.Parser.AtomFeedBurner do
+  @moduledoc """
+  Feed Parser for Atom Feedburner feeds
+
+  ## Feed properties:
+
+  * Title
+  * Description
+  * Url text html
+  * Url notype
+  * Feed url link
+  * Feed url atom10 link
+  * Hubs
+  * Entries
+
+  ## Entry properties:
+
+  * Title
+  * Url
+  * Author
+  * Content
+  * Summary
+  * Image
+  * Published
+  * Updated
+  * Entry id
+  * Categories
+  * Links
+  """
   use Capuli
 
   element :title
@@ -36,6 +64,7 @@ defmodule Feedraptor.Parser.AtomFeedBurner do
       elements :link, as: :links, value: :href
     end
 
+    @doc false
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
@@ -43,6 +72,7 @@ defmodule Feedraptor.Parser.AtomFeedBurner do
     end
   end
 
+  @doc false
   def will_parse?(xml) do
     ((xml =~ ~r/Atom/) && (xml =~ ~r/feedburner/) && !(xml =~ ~r/\<rss|\<rdf/)) || false
   end

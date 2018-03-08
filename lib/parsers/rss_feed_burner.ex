@@ -1,4 +1,27 @@
 defmodule Feedraptor.Parser.RSSFeedBurner do
+  @moduledoc """
+  Feed Parser for Atom feeds
+
+  ## Feed properties:
+
+  * Title
+  * Description
+  * Url
+  * Last Built
+  * Entries
+
+  ## Entry properties:
+
+  * Title
+  * Url
+  * Author
+  * Content
+  * Summary
+  * Published
+  * Updated
+  * Entry id
+  * Categories
+  """
   use Capuli
 
   element :title
@@ -34,6 +57,7 @@ defmodule Feedraptor.Parser.RSSFeedBurner do
       element :guid, as: :entry_id
     end
 
+    @doc false
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
@@ -41,6 +65,7 @@ defmodule Feedraptor.Parser.RSSFeedBurner do
     end
   end
 
+  @doc false
   def will_parse?(xml) do
     (xml =~ ~r/\<rss|\<rdf/) && (xml =~ ~r/feedburner/)
   end

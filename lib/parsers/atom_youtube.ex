@@ -1,4 +1,39 @@
 defmodule Feedraptor.Parser.AtomYoutube do
+  @moduledoc """
+  Feed Parser for Atom Youtube feeds
+
+  ## Feed properties:
+
+  * Title
+  * Url
+  * Feed url
+  * Author
+  * Youtube Channel Id
+  * Entries
+
+  ## Entry properties:
+
+  * Title
+  * Url
+  * Author
+  * Content
+  * Summary
+  * Published
+  * Updated
+  * Entry id
+  * Youtube Video id
+  * Media Title
+  * Media Url
+  * Media Type
+  * Media Width
+  * Media Height
+  * Media Thumbnail Url
+  * Media Thumbnail Width
+  * Media Thumbnail Height
+  * Media Star Count
+  * Media Star Average
+  * Media Views
+  """
   use Capuli
 
   element :title
@@ -37,6 +72,7 @@ defmodule Feedraptor.Parser.AtomYoutube do
       element :"media:statistics", as: :media_views, value: :views
     end
 
+    @doc false
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
@@ -44,6 +80,7 @@ defmodule Feedraptor.Parser.AtomYoutube do
     end
   end
 
+  @doc false
   def will_parse?(xml) do
     xml =~ ~r{xmlns:yt="http://www.youtube.com/xml/schemas/2015"}
   end

@@ -1,4 +1,43 @@
 defmodule Feedraptor.Parser.RSS do
+  @moduledoc """
+  Feed Parser for Atom feeds
+
+  ## Feed properties:
+
+  * Description
+  * Image
+  * Language
+  * Last Build date
+  * Url
+  * Version
+  * Title
+  * TTL
+  * Hubs
+  * Entries
+
+  ## Entry properties:
+
+  * Title
+  * Url
+  * Author
+  * Content
+  * Summary
+  * Image
+  * Published
+  * Updated
+  * Entry id
+  * Categories
+  * Dc Identifier
+
+  ## Image properties:
+
+  * Url
+  * Title
+  * Link
+  * Width
+  * Height
+  * Description
+  """
   use Capuli
 
   element :description
@@ -42,6 +81,7 @@ defmodule Feedraptor.Parser.RSS do
       element :"dc:identifier", as: :dc_identifier
     end
 
+    @doc false
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
@@ -49,6 +89,7 @@ defmodule Feedraptor.Parser.RSS do
     end
   end
 
+  @doc false
   def will_parse?(xml) do
     (xml =~ ~r/\<rss|\<rdf/) && !(xml =~ ~r/feedburner/)
   end

@@ -1,4 +1,32 @@
 defmodule Feedraptor.Parser.GoogleDocsAtom do
+  @moduledoc """
+  Feed Parser for Google Docs feeds
+
+  ## Feed properties:
+
+  * Title
+  * Description
+  * Url
+  * Feed url
+  * Links
+  * Entries
+
+  ## Entry properties:
+
+  * Title
+  * Url
+  * Author
+  * Content
+  * Summary
+  * Published
+  * Updated
+  * Entry id
+  * Categories
+  * Links
+  * Checksum
+  * Original Filename
+  * Suggested Filename
+  """
   use Capuli
 
   element :title
@@ -32,6 +60,7 @@ defmodule Feedraptor.Parser.GoogleDocsAtom do
       element :"docs:suggestedfilename", as: :suggested_filename
     end
 
+    @doc false
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
@@ -39,6 +68,7 @@ defmodule Feedraptor.Parser.GoogleDocsAtom do
     end
   end
 
+  @doc false
   def will_parse?(xml) do
     xml =~ ~r{<id>https?://docs\.google\.com/.*\</id\>}
   end

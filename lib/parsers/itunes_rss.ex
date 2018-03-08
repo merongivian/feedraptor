@@ -1,4 +1,73 @@
 defmodule Feedraptor.Parser.ItunesRSS do
+  @moduledoc """
+  Feed Parser for Google Docs feeds
+
+  ## Feed properties:
+
+  * Copyright
+  * Description
+  * Image
+  * Language
+  * Last Built
+  * Url
+  * Managing Editor
+  * Version
+  * Title
+  * TTL
+  * Itunes Author
+  * Itunes Block
+  * Itunes Image
+  * Itunes Explicit
+  * Itunes Complete
+  * Itunes Keywords
+  * Itunes Type
+  * Itunes new feed url
+  * Itunes Subtitle
+  * Itunes Categories
+  * Itunes Owners
+  * Entries
+
+  ## Owner Properties
+
+  * Name
+  * Email
+
+  ## Entry properties:
+
+  * Author
+  * Guid
+  * Title
+  * Url
+  * Summary
+  * Content
+  * Published
+  * Itunes Author
+  * Itunes Block
+  * Itunes Duration
+  * Itunes Explicit
+  * Itunes Keywords
+  * Itunes Subtitle
+  * Itunes Image
+  * Itunes Closed Captioned
+  * Itunes Order
+  * Itunes Season
+  * Itunes Episode
+  * Itunes Title
+  * Itunes Episode Type
+  * Itunes Summary
+  * Enclosure Length
+  * Enclosure Type
+  * Enclosure Url
+
+  ## Image properties:
+
+  * Url
+  * Title
+  * Link
+  * Width
+  * Height
+  * Description
+  """
   use Capuli
 
   # RSS 2.0 elements that need including
@@ -81,6 +150,7 @@ defmodule Feedraptor.Parser.ItunesRSS do
       #elements "psc:chapter", as: :raw_chapters, class: Feedjira::Parser::PodloveChapter
     end
 
+    @doc false
     def parse(raw_entry) do
       raw_entry
       |> Definition.parse()
@@ -88,6 +158,7 @@ defmodule Feedraptor.Parser.ItunesRSS do
     end
   end
 
+  @doc false
   def will_parse?(xml) do
     xml =~ ~r{xmlns:itunes\s?=\s?[\"\']http://www\.itunes\.com/dtds/podcast-1\.0\.dtd[\"\']}
   end
