@@ -12,7 +12,7 @@ The package can be installed by adding `Feedraptor` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:feedraptor, "~> 0.1.0"}
+    {:feedraptor, "~> 0.2.0"}
   ]
 end
 ```
